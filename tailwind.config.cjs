@@ -15,15 +15,16 @@ module.exports = {
       sans: ['Graphik', 'sans-serif'],
       serif: ['Merriweather', 'serif'],
       trispace :['Trispace', 'sans-serif'],
-      abril:['Abril Fatface','cursive']
+      abril:['Abril Fatface','cursive'],
+      comfortaa : ['Comfortaa' , 'sans-serif']
 
     },
   
     extend: {
-      // backgroundImage: {
-      //   'coffee': "url('./src/assets/background.jpg')",
-      //   // 'footer-texture': "url('/img/footer-texture.png')",
-      // },
+      backgroundImage: {
+        'interior': "url('./src/assets/interior-1.jpg')",
+        // 'footer-texture': "url('/img/footer-texture.png')",
+      },
       spacing: {
           '128': '32rem',
           '144': '36rem',

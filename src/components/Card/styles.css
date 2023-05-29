@@ -1,0 +1,63 @@
+
+  .card-list{
+    display:flex;
+    justify-content: center;
+  }
+  
+  .card:hover{
+    transform: scale(1.1)
+
+  }
+  
+  .card{
+    position: relative;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    margin:0 25px;
+    border-radius:27px;
+    padding: 2rem;
+    height:300px;
+    width:170px;
+    color:#818489;
+    background: linear-gradient(149deg, #363B40 0%, #16181B 100%);
+    box-shadow:20px 15px 50px 0px #0B0D10;
+    font-family: 'Courier Prime', monospace;
+    text-shadow: -1px -1px 2px #474b4f;
+  }
+  
+  .carousel-indicators{
+    display:flex;
+    justify-content: center;
+  }
+  
+  
+  .carousel-indicators li{
+    position: relative;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    width: 15px;
+    height: 15px;
+    margin: 0 10px;
+    border-radius:50%;
+    text-indent: -999px;
+    background: linear-gradient(149deg, #363B40 0%, #16181B 100%);
+    
+  }
+   
+  .carousel-indicators li.active{
+    background: linear-gradient(300deg, #363B40 0%, #16181B 100%);
+    border: 2px solid #363B40;
+  }
+  
+  .card .title{
+    font-family: 'Raleway', sans-serif;
+    font-size: 25px;
+    background: -webkit-linear-gradient(left, #6F747A 0%, #DBDCDE 100%);
+  background: linear-gradient(to right, #6F747A 0%, #DBDCDE 100%);
+  background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow:none;
+  }
