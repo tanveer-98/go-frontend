@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../Navbar/Navbar";
 import Hero from "../Hero/Hero";
-import BarIcon from "../../assets/baricon.png";
+
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import MultiCarousel from "../MultiCarousel";
@@ -44,17 +44,10 @@ interface IProject {
   url: string;
   imageUrl: string;
 }
-const Home = () => {
+const Home = ({}) => {
   return (
-    <div className="relative">
-      <div className="fixed top-9 right-10 z-50">
-        {" "}
-        <img
-          className="h-[40px] w-[40px] hover:scale-110 hover:cursor-pointer"
-          src={BarIcon}
-          alt="Hamburger Icon dark"
-        />
-      </div>
+    <div className="relative overflow-hidden">
+     
       <div className="fixed z-40  w-full">
         <Navbar />
       </div>
@@ -62,7 +55,7 @@ const Home = () => {
       <ServicesSection/>
       <ProductsSection/>
       <Footer/>
-      <div className="absolute h-[600px] w-[50%] bg-[#27282b] top-[100px] right-0">
+      <div className="absolute h-[600px] w-[50%] bg-[#27282b] top-[100px] right-0 hidden md:flex">
         <div className="grid grid-cols-2  h-full">
           <div className="flex h-full flex-col items-start justify-center">
             <p className="text-white tracking-wider text-2xl  text-left font-sans px-24">

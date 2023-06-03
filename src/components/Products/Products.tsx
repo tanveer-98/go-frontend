@@ -54,8 +54,8 @@ const Products = () => {
 
   return (
 
-    <>
-    <h3 className="product-title mt-12">Our Products</h3>
+    <div className="bg-[#27282b]">
+    <h3 className="product-title pt-12">Our Products</h3>
     <div className="products-container">
       <div className="search-bar">
         <input
@@ -93,7 +93,7 @@ const Products = () => {
         ))}
       </div>
     </div>
-    </>
+    </div>
   );
 };
 

@@ -1,15 +1,19 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
+import BarIcon from "../../assets/baricon.png";
+import BarWhite from '../../assets/bar-white.svg'
+import BarBlack from '../../assets/bar-black.svg'
+import BarWhiteClose from '../../assets/bar-close-white.svg'
+import BarBlackClose from '../../assets/bar-close-black.svg'
 
 import logo from "../../assets/logo.png";
 
 type I = object | void;
 import { Link as SLink, animateScroll as scroll } from "react-scroll";
 const Navbar = () => {
-    const [navcolor , setNavcolor]= useState(false)
-const [hamIcon, setHamIcon] = useState(false);
+  const [navcolor, setNavcolor] = useState(false);
+  const [hamIcon, setHamIcon] = useState(false);
   const toggleHam = () => {
-
     setHamIcon(!hamIcon);
 
     // toggleScrollbar();
@@ -19,22 +23,21 @@ const [hamIcon, setHamIcon] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       // Handle scroll event here
-      if(window.scrollY > 100){
-        console.log("color changed")
-          setNavcolor(true)
-      }
-      else if(window.scrollY < 100){
-        setNavcolor(false)
+      if (window.scrollY > 100) {
+        console.log("color changed");
+        setNavcolor(true);
+      } else if (window.scrollY < 100) {
+        setNavcolor(false);
       }
       // You can perform any actions or call functions based on the scroll event
     };
 
     // Add event listener when component mounts
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     // Clean up the event listener when component unmounts
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []); // Empty dependency array to ensure the event listener is added only once
 
@@ -70,8 +73,22 @@ const [hamIcon, setHamIcon] = useState(false);
   };
   return (
     <>
+      <div className="fixed top-9 right-10 z-50 md:hidden">
+        {" "}
+        <img
+          
+          src={`${hamIcon ?`${navcolor ? BarWhiteClose: BarBlackClose} ` : `${navcolor ? BarWhite : BarBlack}`}`}
+          alt="Hamburger Icon dark"
+          onClick={() => toggleHam()}
+          className={`h-[30px] w-[30px] hover:scale-110 hover:cursor-pointer`}
+        />
+      </div>
       {/* bg-[#070707]  */}
-      <header className={`header relative z-50 ${navcolor ? "bg-[#27282b]":"bg-transparent mr-32"} dark:bg-[#002D13] `}>
+      <header
+        className={`header relative z-40 ${
+          navcolor ? "bg-[#27282b]" : "bg-transparent mr-32"
+        } dark:bg-[#002D13] `}
+      >
         {/* <div className="absolute -bottom-24 text-white text-3xl">
           <span className="bg-black rounded-r-4xl p-4 font-bold text-white uppercase text-4xl ml-[10%] font-comfortaa ">
             Build
@@ -87,8 +104,10 @@ const [hamIcon, setHamIcon] = useState(false);
             <span className=" font-abril text-5xl font-bold border-1 text-white border-white">
               go
             </span>
-            <span className="text-5xl font-bold border-1 text-white border-white font-abril"> interior</span>
-            
+            <span className="text-5xl font-bold border-1 text-white border-white font-abril">
+              {" "}
+              interior
+            </span>
           </div>
         </div>
         <div className="hidden md:flex self-center w-full">
@@ -137,18 +156,16 @@ const [hamIcon, setHamIcon] = useState(false);
             <Link to="/">home</Link>
           </div>
           <div onClick={toggleHam} className={styles.navlink}>
-            <Link to="gallery">gallery</Link>
+            <Link to="gallery">product</Link>
           </div>
 
           <div onClick={toggleHam} className={styles.navlink}>
-            <Link to="members">members</Link>
+            <Link to="members">contact</Link>
           </div>
           <div onClick={toggleHam} className={styles.navlink}>
-            <Link to="about">about us</Link>
+            <Link to="about">login</Link>
           </div>
-          <div onClick={toggleHam} className={styles.navlink}>
-            <Link to="contact">contact us</Link>
-          </div>
+    
         </nav>
         {/* </div> */}
 
