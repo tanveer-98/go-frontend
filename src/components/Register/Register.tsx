@@ -1,5 +1,5 @@
 import React from 'react'
-import {register} from '../../services/register'
+// import {register} from '../../services/register'
 import {
     Formik,
     Form,

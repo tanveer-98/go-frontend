@@ -12,8 +12,6 @@ const ButtonContainer = styled("div")({
 
 });
 
-import ReactHtmlParser from 'react-html-parser';
-
 const CustomPrimaryButton = ({
   children,
   additionalStyles,
