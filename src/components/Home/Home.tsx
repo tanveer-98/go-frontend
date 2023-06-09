@@ -14,6 +14,9 @@ import design3 from "../../assets/design3.jpg";
 import ServicesSection from "../Services/Services";
 import ProductsSection from "../Products/Products";
 import Footer from "../Footer/Footer";
+import ContactForm from '../ContactForm/contact';
+import ThreeDModel from "../ThreeDModel/ThreeDModel";
+import BlurryBackground from "../BlurryBackground/BlurryBackground";
 
 const responsive = {
   superLargeDesktop: {
@@ -54,9 +57,12 @@ const Home = ({}) => {
       <Hero />
       <ServicesSection/>
       <ProductsSection/>
+      <ContactForm/>
+      <ThreeDModel/>
+      <BlurryBackground/>
       <Footer/>
       <div className="absolute h-[600px] w-[50%] bg-[#27282b] top-[100px] right-0 hidden md:flex">
-        <div className="grid grid-cols-2  h-full">
+        <div  className="featured grid grid-cols-2  h-full">
           <div className="flex h-full flex-col items-start justify-center">
             <p className="text-white tracking-wider text-2xl  text-left font-sans px-24">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.

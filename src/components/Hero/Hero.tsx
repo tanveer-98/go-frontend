@@ -31,19 +31,24 @@ const Hero = () => {
           <p className="font-bold ml-2 text-white text-2xl ">Your Dream Home</p>
         </div>
       </div>
+      <div className="blur-load"
+      style={{backgroundImage : `${bgImages[currentPage-1]}`}}>
       <img
         src={bgImages[currentPage-1]}
         className={`${
           false ? "blur-md" : " "
-        } absolute  top-0 z-0 left-0 w-full h-full mix-blend-overlay object-cover transition-all ease-linear duration-150`}
+        } absolute  top-0 z-0 left-0 w-full h-full object-cover transition-all ease-linear duration-150`}
         alt="Image Not Found"
-      />
-      <div className="grid grid-cols-2 w-full h-full items-center justify-center relative ">
-        <h3 className="font-sans text-white tracking-widest  text-6xl uppercase flex justify-center text-center  px-28 relative z-30">
+        loading="lazy"
+      />  
+      </div>
+      <div className="grid  grid-cols-1 md:grid-cols-2 w-full h-full items-center justify-center relative ">
+        <h3 className="font-playfair text-white tracking-widest text-left font-bold md:font-normal text-6xl uppercase flex justify-center 
+        md:text-center  px-28 relative z-30 ">
           GET ALL YOUR ROOM IDEAS AT ONE PLACE
         </h3>
       </div>
-      <div className="w-full flex justify-left absolute bottom-0 h-[50px] left-[20%] gap-4">
+      <div className="w-full flex md:justify-left justify-center  absolute bottom-0 h-[50px] md:left-[20%] gap-4">
         <span
           id="1"
           onClick={(e) => setCurrentPageHandler(e)}

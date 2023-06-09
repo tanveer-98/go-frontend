@@ -24,7 +24,7 @@
   --color-grey-dark-3: #999;
 
   --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, 0.3);
-  --shadow-light: 0 2rem 5rem rgba(0, 0, 0, 0.06);
+  --shadow-light: 0 2rem 5rem                                                                 rgba(0, 0, 0, 0.06);
   --line: 1px solid var(--color-grey-light-2);
 }
 /* 
@@ -32,6 +32,12 @@ $bp-largest: 75rem;
 $bp-large:68.75rem;
 $bp-medium:56.25rem; // 900px
 $bp-small: 39rem; */
+
+.featured{
+  clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 25%, 75% 0);
+
+}
+
 
 *,
 ::before,
@@ -295,7 +301,7 @@ duration-300 ease-linear;
   width: 70%;
   position: absolute;
   bottom : 0 ; 
-  background-color: rgb(0, 255, 76);
+  background: radial-gradient(circle at 10% 20%, rgb(64, 84, 178) 0%, rgb(219, 2, 234) 90%);
 
 
 }
@@ -681,4 +687,9 @@ SOCIALS
     color: #ccc;
     font-size: 16px;
     line-height: 1.5;
+  }
+
+  .blur-load{
+    background-size : cover;
+    background-position: center;
   }

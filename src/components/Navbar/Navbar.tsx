@@ -6,7 +6,7 @@ import BarBlack from '../../assets/bar-black.svg'
 import BarWhiteClose from '../../assets/bar-close-white.svg'
 import BarBlackClose from '../../assets/bar-close-black.svg'
 
-import logo from "../../assets/logo.png";
+import logo from "../../assets/cropped-logo.png";
 
 type I = object | void;
 import { Link as SLink, animateScroll as scroll } from "react-scroll";
@@ -100,15 +100,18 @@ const Navbar = () => {
         </div> */}
         <div className="logo-name ml-12">
           {/* <img src={logo} style = {{height: "50px",  width: "50px"}} alt="ganasuraksha party logo" className=" ml-10 pr-0" /> */}
-          <div className="party-name relative dark:text-white font-abril">
-            <span className=" font-abril text-5xl font-bold border-1 text-white border-white">
+          {/* <div className="party-name relative dark:text-white font-abril"> */}
+            {/* <span className=" font-abril text-5xl font-bold border-1 text-white border-white">
               go
             </span>
             <span className="text-5xl font-bold border-1 text-white border-white font-abril">
               {" "}
               interior
-            </span>
-          </div>
+            </span> */}
+            <img 
+            style ={{height: "100%", width: "100px"}}
+            src={logo} alt="go interior logo" />
+          {/* </div> */}
         </div>
         <div className="hidden md:flex self-center w-full">
           <nav className="mr-auto flex flex-1 items-center justify-center">

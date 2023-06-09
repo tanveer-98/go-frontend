@@ -16,7 +16,8 @@ module.exports = {
       serif: ['Merriweather', 'serif'],
       trispace :['Trispace', 'sans-serif'],
       abril:['Abril Fatface','cursive'],
-      comfortaa : ['Comfortaa' , 'sans-serif']
+      comfortaa : ['Comfortaa' , 'sans-serif'],
+      playfair : ['Playfair Display', 'sans-serif']
 
     },
   
