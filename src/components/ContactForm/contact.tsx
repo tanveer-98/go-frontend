@@ -322,7 +322,7 @@ const Contact = () => {
                 */}
 
                   <Button type="submit">
-                    <div className="flex flex-row gap-1 text-2xl items-center font-comfortaa">
+                    <div className="flex flex-row gap-1 text-2xl items-center">
                       {" "}
                       SEND <FiSend />
                     </div>

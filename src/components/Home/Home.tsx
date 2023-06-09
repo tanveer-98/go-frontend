@@ -14,9 +14,10 @@ import design3 from "../../assets/design3.jpg";
 import ServicesSection from "../Services/Services";
 import ProductsSection from "../Products/Products";
 import Footer from "../Footer/Footer";
-import ContactForm from '../ContactForm/contact';
+import ContactForm from "../ContactForm/contact";
 import ThreeDModel from "../ThreeDModel/ThreeDModel";
 import BlurryBackground from "../BlurryBackground/BlurryBackground";
+import Scene from "../Scene/Scene";
 
 const responsive = {
   superLargeDesktop: {
@@ -50,20 +51,19 @@ interface IProject {
 const Home = ({}) => {
   return (
     <div className="relative overflow-hidden">
-     
+      <div className="blur-circle"></div>
       <div className="fixed z-40  w-full">
         <Navbar />
       </div>
       <Hero />
-      <ServicesSection/>
-      <ProductsSection/>
-      <ContactForm/>
-      <ThreeDModel/>
-      <BlurryBackground/>
-      <Footer/>
-      <div className="absolute h-[600px] w-[50%] bg-[#27282b] top-[100px] right-0 hidden md:flex">
-        <div  className="featured grid grid-cols-2  h-full">
-          <div className="flex h-full flex-col items-start justify-center">
+      <div className="py-12 bg-[#27282b] ">
+
+      <div className= "featured bg-[#27282b] relative md:absolute  h-full md:h-[600px] w-full  md:w-[50%] px-10  md:top-[100px] md:right-0  md:flex-col">
+        <h2 className="font-playfair text-center block text-3xl font-bold text-white my-12">Featured Products</h2>
+      
+
+        <div className="grid md:grid-cols-2 h-[80%] justify-center items-center">
+          <div className=" order-2 md:order-1  h-full flex flex-col items-center justify-center">
             <p className="text-white tracking-wider text-2xl  text-left font-sans px-24">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Laudantium libero esse velit eveniet quisquam officia, eaque a
@@ -72,12 +72,11 @@ const Home = ({}) => {
             </p>
             <div className=" w-full justify-left px-24">
               <button className="text-xl px-5 hover:bg-[#2e2e2e] hover:text-white transition-all duration-300 ease-linear border-2 border-transparent hover:border-2 hover:border-[#C0C7CA] inline-block bg-[#C0C7CA] mt-8 font-bold  py-2 rounded">
-                {" "}
-                Explore More
+                Explore
               </button>
             </div>
           </div>
-          <div className="flex h-full items-center">
+          <div className="flex h-full items-center justify-center mb-12">
             <MultiCarousel>
               <div className={styles.carousal_container}>
                 <ProductCard
@@ -104,9 +103,16 @@ const Home = ({}) => {
             ;
           </div>
         </div>
+   
       </div>
-
-     
+      </div>
+      <ServicesSection />
+      <ProductsSection />
+      <ContactForm />
+      {/* <ThreeDModel/> */}
+      {/* <Scene/> */}
+      <BlurryBackground />
+      <Footer />
     </div>
   );
 };

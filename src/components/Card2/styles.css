@@ -1,5 +1,5 @@
 .product-card {
-    background-color: #333;
+    background-color: transparent;
     color: #fff;
     border-radius: 8px;
     padding: 20px;
@@ -32,3 +32,4 @@
     font-size: 14px;
     line-height: 1.5;
   }
+  

@@ -14,9 +14,8 @@ module.exports = {
     fontFamily: {
       sans: ['Graphik', 'sans-serif'],
       serif: ['Merriweather', 'serif'],
-      trispace :['Trispace', 'sans-serif'],
-      abril:['Abril Fatface','cursive'],
-      comfortaa : ['Comfortaa' , 'sans-serif'],
+    poppins : ['Poppins' , 'serif'],
+    ubuntu : ['Ubuntu' , 'serif'],
       playfair : ['Playfair Display', 'sans-serif']
 
     },
@@ -24,6 +23,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         'interior': "url('./src/assets/interior-1.jpg')",
+        'abstract': "url('./src/assets/abstract.jpg')",
         // 'footer-texture': "url('/img/footer-texture.png')",
       },
       spacing: {

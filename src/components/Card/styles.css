@@ -20,7 +20,7 @@
     height:300px;
     width:170px;
     color:#818489;
-    background: linear-gradient(149deg, #363B40 0%, #16181B 100%);
+    /* background: linear-gradient(149deg, #363B40 0%, #16181B 100%); */
     box-shadow:20px 15px 50px 0px #0B0D10;
     font-family: 'Courier Prime', monospace;
     text-shadow: -1px -1px 2px #474b4f;

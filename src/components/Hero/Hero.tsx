@@ -25,7 +25,7 @@ const Hero = () => {
     <div className="flex relative z-1 justify-center items-center  h-[700px]  mr-32 ">
       <div className="absolute left-[4%] top-40">
         <div className="flex justify-center items-start flex-col ">
-          <span className="bg-black inline-block rounded-r-4xl  px-2 py-2 font-bold text-white uppercase text-3xl  font-comfortaa ">
+          <span className="bg-black inline-block rounded-r-4xl  px-2 py-2 font-bold text-white uppercase text-3xl   ">
             Build
           </span>
           <p className="font-bold ml-2 text-white text-2xl ">Your Dream Home</p>
@@ -43,10 +43,17 @@ const Hero = () => {
       />  
       </div>
       <div className="grid  grid-cols-1 md:grid-cols-2 w-full h-full items-center justify-center relative ">
-        <h3 className="font-playfair text-white tracking-widest text-left font-bold md:font-normal text-6xl uppercase flex justify-center 
+        <div className="font-playfair text-white tracking-widest text-left font-bold md:font-normal text-6xl flex justify-center 
         md:text-center  px-28 relative z-30 ">
-          GET ALL YOUR ROOM IDEAS AT ONE PLACE
-        </h3>
+         <span className="uppercase font-extrabold text-transparent bg-clip-text  bg-gradient-to-r from-[#592DD1] to-[#dfd3ff]">
+
+          Welcome to Go Interior 
+         </span>
+         <span  className="text-3xl">
+          - Your Trusted Partner for Exceptional Interior Design Solutions
+
+         </span>
+        </div>
       </div>
       <div className="w-full flex md:justify-left justify-center  absolute bottom-0 h-[50px] md:left-[20%] gap-4">
         <span

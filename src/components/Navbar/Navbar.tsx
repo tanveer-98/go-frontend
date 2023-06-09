@@ -73,7 +73,7 @@ const Navbar = () => {
   };
   return (
     <>
-      <div className="fixed top-9 right-10 z-50 md:hidden">
+      <div className="fixed top-9 right-10 md:hidden">
         {" "}
         <img
           
@@ -90,7 +90,7 @@ const Navbar = () => {
         } dark:bg-[#002D13] `}
       >
         {/* <div className="absolute -bottom-24 text-white text-3xl">
-          <span className="bg-black rounded-r-4xl p-4 font-bold text-white uppercase text-4xl ml-[10%] font-comfortaa ">
+          <span className="bg-black rounded-r-4xl p-4 font-bold text-white uppercase text-4xl ml-[10%]">
             Build
           </span>
           <p>
@@ -110,7 +110,9 @@ const Navbar = () => {
             </span> */}
             <img 
             style ={{height: "100%", width: "100px"}}
-            src={logo} alt="go interior logo" />
+            src={logo} alt="go interior logo" 
+            className="go-logo "
+            />
           {/* </div> */}
         </div>
         <div className="hidden md:flex self-center w-full">

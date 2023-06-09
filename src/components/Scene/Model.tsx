@@ -10,8 +10,8 @@ Title: Fantasy Interior Items
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
-export function Model(props) {
-  const { nodes, materials } = useGLTF('/interior.glb')
+export function Model(props : any) {
+  const { nodes , materials } :any = useGLTF('./interior.glb')
   return (
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]} scale={0.003}>
