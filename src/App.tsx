@@ -9,6 +9,7 @@ const LazyLogin = React.lazy(()=>import('./routes/login'))
 const LazyRegister = React.lazy(()=>import('./routes/register'))
 
 import Auth from "./components/Auth/Auth";
+import HomeCalculator from "./components/HomeCalculator";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route path="/login" element={<LazyLogin />} />
       <Route path="/register" element={<LazyRegister />} />
       <Route path="/auth" element={<Auth />} />
+      <Route path = '/homeCalculator' element={<HomeCalculator />} />
     </Routes>
   );
 }

@@ -23,7 +23,7 @@
     "axios": "^1.4.0",
     "drei": "^2.2.21",
     "firebase": "^9.21.0",
-    "formik": "^2.4.1",
+    "formik": "^2.4.2",
     "framer-motion": "^10.12.16",
     "postcss-cli": "^10.0.0",
     "react": "^18.2.0",
