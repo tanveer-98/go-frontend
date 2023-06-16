@@ -10,7 +10,7 @@ interface IProductCard {
 const ProductCard: React.FC<IProductCard> = ({ product_description, product_name, product_image }) => {
   return (
     <div className="product-card">
-      <img src={product_image} alt={product_name} className="product-image" />
+      <img draggable={false} src={product_image} alt={product_name} className="product-image" />
       <div className="product-info">
         <h3 className="product-name">{product_name}</h3>
         <p className="product-description">{product_description}</p>

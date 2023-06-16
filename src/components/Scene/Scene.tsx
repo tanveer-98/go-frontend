@@ -4,12 +4,14 @@ import { OrbitControls } from '@react-three/drei';
 import {Model} from './Model'
 export default function Scene() {
    return (
+    <div className="w-full flex justify-center items-center">
+
       <Canvas
          camera={{ position: [2, 0, 12.25], fov: 15 }}
          style={{
-            backgroundColor: '#111a21',
-            width: '100vw',
-            height: '100vh',
+            // backgroundColor: '#111a21',
+            width: '60%',
+            height: '60%',
          }}
       >
          <ambientLight intensity={1.25} />
@@ -20,5 +22,6 @@ export default function Scene() {
          </Suspense>
          <OrbitControls />
       </Canvas>
+    </div>
    );
 }

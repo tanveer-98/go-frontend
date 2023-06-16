@@ -73,7 +73,7 @@ body {
 html {
   box-sizing: border-box;
   font-size: 62.5%;
-  background-color: #5F5E5F;
+  background-image: url('./public/abstract-textured-backgound.jpg')
   /* // 1rem = 10px , 10px/16 == 62.5% */
 }
 
@@ -654,7 +654,7 @@ SOCIALS
 /* Services section  */
 
 .services-section {
-    background-color: #1a1a1a;
+    /* background-color: #1a1a1a; */
     color: #fff;
     padding: 50px;
     text-align: center;
@@ -706,3 +706,12 @@ SOCIALS
   }
 
  
+  .title {
+    font-size: 28px;
+    /* font-weight: bold; */
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
