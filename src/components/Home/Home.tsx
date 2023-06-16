@@ -7,7 +7,7 @@ import "react-multi-carousel/lib/styles.css";
 import MultiCarousel from "../MultiCarousel";
 import Card from "../TestimonialCard";
 import ProductCard from "../Card2/Card2";
-
+import Calculator from '../Calculator'
 import design1 from "../../assets/design1.jpg";
 import design2 from "../../assets/design2.jpg";
 import design3 from "../../assets/design3.jpg";
@@ -109,9 +109,10 @@ const Home = ({}) => {
       <ServicesSection />
       <ProductsSection />
       <ContactForm />
+      <Calculator/>
       {/* <ThreeDModel/> */}
       {/* <Scene/> */}
-      <BlurryBackground />
+      {/* <BlurryBackground /> */}
       <Footer />
     </div>
   );
