@@ -4,9 +4,10 @@ interface IPackage {
   result : IInitialState
   prevStep: () => number;
   nextStep: () => number;
-  handleChange: (updatedValue: number) => any;
+  handleStepChange: (updatedValue: number) => any;
+  handleResultChange  :(updatedResult : IInitialState) => void; 
 }
-const Package = ({result , prevStep , nextStep , handleChange}:IPackage) => {
+const Package = ({result , prevStep , nextStep , handleStepChange ,handleResultChange}:IPackage) => {
   return (
 <div className="w-full h-screen flex justify-center items-center flex-col">
       <div className="w-[80%] h-[80%] container bg-purple-500 rounded-md flex flex-col justify-center items-center">
@@ -15,13 +16,13 @@ const Package = ({result , prevStep , nextStep , handleChange}:IPackage) => {
         </h1>
         <button
           className="w-[100px] bg-purple-600 text-2xl text-white px-4 py-2 shadow-sm shadow-purple-800 hover:shadow-none rounded-md"
-          onClick={() => handleChange(prevStep())}
+          onClick={() => handleStepChange(prevStep())}
         >
           Prev
         </button>
         <button
           className="w-[100px] bg-purple-600 text-2xl text-white px-4 py-2 shadow-sm shadow-purple-800 hover:shadow-none rounded-md"
-          onClick={() => handleChange(nextStep())}
+          onClick={() => handleStepChange(nextStep())}
         >
           Next
         </button>

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { IInitialState } from "../../../types";
-
-const ROOMDATA = [
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+const BHKDATA = [
   {
     id: 1,
     type: "1BHK",
@@ -41,35 +42,48 @@ const ROOMDATA = [
 export interface IBHK {
   result: IInitialState;
   nextStep: () => number;
-  handleChange: (updatedValue: number) => any;
+  handleStepChange: (updatedValue: number) => any;
+  handleResultChange : (updatedResult : IInitialState) => void; 
 }
 // update the Interface type
 const getData = (form: any) => {
-  console.log(form);
+//   console.log(form);
   const data = new FormData(form);
-  console.log(data);
+//   console.log(data);
 
   // method 1: loop
-  for (let [key, value] of Object.entries(data)) {
-    console.log(key + "     " + value);
-  }
+//   for (let [key, value] of Object.entries(data)) {
+//     console.log(key + "     " + value);
+//   }
   // method 2 : output as Object only
 
-  console.log(Object.fromEntries(data.entries()));
+  return Object.fromEntries(data.entries());
 };
 
-const BHK = ({ nextStep, handleChange }: IBHK) => {
-  const [checked, setChecked] = useState<Boolean>(false);
+const BHK = ({ result,nextStep, handleStepChange ,handleResultChange }: IBHK) => {
+
+//   const [checked, setChecked] = useState<Boolean>(false);
   const [checkedValue, setCheckedValue] = useState<string | null>(null);
+
+  const alert  = ()=> toast("Unable to Proceed. Select Option");
 
   const handleFormSubmit = (e: any) => {
     e.preventDefault();
-    console.log(e.target);
-    getData(e.target);
+    if(checkedValue === null) {
+        alert();
+        return;
+    }
+    // console.log(e.target);
+    const updatedData = getData(e.target);
+    console.log(updatedData)
+    handleResultChange({...result, ...updatedData});
 
-    // setTimeout(() => {
-    //   handleChange(nextStep());
-    // }, 3000);
+
+    setTimeout(() => {  
+      handleStepChange(nextStep());
+    }, 1000);
+
+    // e.target.reset();
   };
 
   const handleInputChange = (e: any) => {
@@ -84,16 +98,27 @@ const BHK = ({ nextStep, handleChange }: IBHK) => {
         <h1 className="text-3xl md:text-5xl text-white font-bold drop-shadow-md mb-2">
           Select BHK Type
         </h1>
+        <ToastContainer
+       position="top-center"
+       autoClose={5000}
+       hideProgressBar={false}
+       newestOnTop={false}
+       closeOnClick
+       rtl={false}
+       pauseOnFocusLoss
+       draggable
+       pauseOnHover
+       theme="light"/>
         <form onSubmit={(e) => handleFormSubmit(e)} className="w-[80%] flex justify-center flex-col items-center">
-          {ROOMDATA.map((data: any, idx) => {
+          {BHKDATA.map((data: any, idx) => {
             if (data.size === null) {
               return (
-                <div className=" flex items-center gap-2 justify-center w-[80%]   h-[50px] bg-purple-600 rounded-md shadow-md shadow-black my-2">
+                <div key={idx} className=" flex items-center gap-2 justify-center w-[80%]   h-[50px] bg-purple-600 rounded-md shadow-md shadow-black my-2">
                   <input
                     className="mx-2"
                     type="radio"
                     value={data.type}
-                    name="bhktype"
+                    name="bhkType"
                     onChange={(e) => handleInputChange(e)}
                   ></input>
                   <label
@@ -106,11 +131,11 @@ const BHK = ({ nextStep, handleChange }: IBHK) => {
               );
             } else {
               return (
-                <div className="flex flex-col items-center gap-2  w-[80%]  bg-purple-600 rounded-md shadow-md shadow-black my-2">
+                <div key={idx} className="flex flex-col items-center gap-2  w-[80%]  bg-purple-600 rounded-md shadow-md shadow-black my-2">
                   <div className="flex flex-row">
                     <input
                       className="mx-2"
-                      name="bhktype"
+                      name="bhkType"
                       value={data.type}
                       type="radio"
                       onChange={(e) => handleInputChange(e)}

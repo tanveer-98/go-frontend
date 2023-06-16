@@ -21,7 +21,8 @@ interface ICurrentComponent {
   step: number;
   nextStep: () => number;
   prevStep: () => number;
-  handleChange: (updatedValue: number) => void;
+  handleStepChange: (updatedValue: number) => void;
+  handleResultChange: (updatedResult: IInitialState) => void;
 }
 
 const CurrentComponent = ({
@@ -29,12 +30,18 @@ const CurrentComponent = ({
   step,
   nextStep,
   prevStep,
-  handleChange,
+  handleStepChange,
+  handleResultChange
 }: ICurrentComponent) => {
   switch (step) {
     case 1:
       return (
-        <BHK result={result} nextStep={nextStep} handleChange={handleChange} />
+        <BHK
+          result={result}
+          nextStep={nextStep}
+          handleStepChange={handleStepChange}
+          handleResultChange={handleResultChange}
+        />
       );
       break;
     case 2:
@@ -42,7 +49,8 @@ const CurrentComponent = ({
         <Rooms
           result={result}
           nextStep={nextStep}
-          handleChange={handleChange}
+          handleStepChange={handleStepChange}
+          handleResultChange={handleResultChange}
           prevStep={prevStep}
         />
       );
@@ -53,7 +61,8 @@ const CurrentComponent = ({
           result={result}
           nextStep={nextStep}
           prevStep={prevStep}
-          handleChange={handleChange}
+          handleStepChange={handleStepChange}
+          handleResultChange={handleResultChange}
         />
       );
       break;
@@ -63,7 +72,8 @@ const CurrentComponent = ({
           result={result}
           nextStep={nextStep}
           prevStep={prevStep}
-          handleChange={handleChange}
+          handleStepChange={handleStepChange}
+          handleResultChange={handleResultChange}
         />
       );
       break;
@@ -75,7 +85,7 @@ const CurrentComponent = ({
 
 const initialState: IInitialState = {
   bhkType: null,
-  bhkTypeSize: null,
+  bhkSize: null,
   RoomDesign: null,
   PackagePicked: null,
   getQuote: null,
@@ -84,10 +94,15 @@ const HomeCalculator = () => {
   const [step, setStep] = useState(1);
   const [result, setResult] = useState<IInitialState>(initialState);
 
-  const handleChange = (updateValue: number) => {
+  const handleStepChange = (
+    updateValue: number,
+
+  ) => {
     setStep(updateValue);
   };
-
+ const handleResultChange = (updatedResult: IInitialState)=>{
+  setResult(updatedResult);
+ }
   const prevStep: any = () => {
     if (step == 1) return step;
     else setStep(step - 1);
@@ -102,9 +117,10 @@ const HomeCalculator = () => {
   return (
     <div>
       <CurrentComponent
-        result = {result}
+        result={result}
         step={step}
-        handleChange={handleChange}
+        handleStepChange={handleStepChange}
+        handleResultChange={handleResultChange}
         prevStep={prevStep}
         nextStep={nextStep}
       />

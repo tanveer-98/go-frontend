@@ -10,7 +10,8 @@ interface IQuote {
   result : IInitialState
   prevStep: () => number;
   nextStep: () => number;
-  handleChange: (updatedValue: number) => any;
+  handleStepChange: (updatedValue: number) => any;
+  handleResultChange  :(updatedResult : IInitialState) => void; 
 }
 const ButtonContainer  = styled.div`
 display :flex;
@@ -19,7 +20,7 @@ flex-direction: row ;
 flex-gap : 2rem;
 flex-wrap : wrap;
 `
-const Quote = ({result ,prevStep , handleChange}: IQuote) => {
+const Quote = ({result ,prevStep , handleStepChange, handleResultChange}: IQuote) => {
   const handleSubmit = ()=>{
    return  toast("Form successfully submitted ");
   }
@@ -36,7 +37,7 @@ const Quote = ({result ,prevStep , handleChange}: IQuote) => {
 
       <button
         className="w-[100px] bg-purple-600 text-2xl text-white px-4 py-2 shadow-sm shadow-purple-800 hover:shadow-none rounded-md"
-        onClick={() => handleChange(prevStep())}
+        onClick={() => handleStepChange(prevStep())}
         type="button"
       >
         Prev

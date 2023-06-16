@@ -20,9 +20,9 @@ export interface IRoomDesign{
   }
   
   export interface IInitialState {
-    bhkType : string |null; 
-    bhkTypeSize : string | null;
-    RoomDesign : IRoomDesign | null;
-    PackagePicked : IPackagePicked |null;
-    getQuote : IGetQuote |null;
+    bhkType? : string |null; 
+    bhkSize?: string | null;
+    RoomDesign? : IRoomDesign | null;
+    PackagePicked? : IPackagePicked |null;
+    getQuote? : IGetQuote |null;
   }
