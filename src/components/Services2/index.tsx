@@ -120,9 +120,7 @@ const Services2 = () => {
       </div>
       {/* Mobile view */}
 
-      <div className="flex flex-col md:hidden">
-        <Faq />
-      </div>
+     
     </div>
   );
 };
