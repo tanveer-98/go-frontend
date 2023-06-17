@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
 import BarIcon from "../../assets/baricon.png";
-import BarWhite from '../../assets/bar-white.svg'
-import BarBlack from '../../assets/bar-black.svg'
-import BarWhiteClose from '../../assets/bar-close-white.svg'
-import BarBlackClose from '../../assets/bar-close-black.svg'
-
+import BarWhite from "../../assets/bar-white.svg";
+import BarBlack from "../../assets/bar-black.svg";
+import BarWhiteClose from "../../assets/bar-close-white.svg";
+import BarBlackClose from "../../assets/bar-close-black.svg";
+import { toggleScrollbar } from "../../utility/disablescroll";
 import logo from "../../assets/cropped-logo.png";
 
 type I = object | void;
@@ -16,7 +16,8 @@ const Navbar = () => {
   const toggleHam = () => {
     setHamIcon(!hamIcon);
 
-    // toggleScrollbar();
+
+    toggleScrollbar();
     // console.log("ham Icon toggled");
   };
   //   const dispatch = useAppDispatch();
@@ -71,13 +72,17 @@ const Navbar = () => {
     });
     event.target.classList.add("nav-link-active");
   };
+
   return (
     <>
-      <div className="fixed top-9 right-10 md:hidden">
+      <div className="hamicon fixed top-9 right-10 md:hidden">
         {" "}
         <img
-          
-          src={`${hamIcon ?`${navcolor ? BarWhiteClose: BarBlackClose} ` : `${navcolor ? BarWhite : BarBlack}`}`}
+          src={`${
+            hamIcon
+              ? `${navcolor ? BarWhiteClose : BarBlackClose} `
+              : `${navcolor ? BarWhite : BarBlack}`
+          }`}
           alt="Hamburger Icon dark"
           onClick={() => toggleHam()}
           className={`h-[30px] w-[30px] hover:scale-110 hover:cursor-pointer`}
@@ -85,8 +90,8 @@ const Navbar = () => {
       </div>
       {/* bg-[#070707]  */}
       <header
-        className={`header relative z-40 ${
-          navcolor ? "bg-[#27282b]" : "bg-transparent mr-32"
+        className={`border-b-2 border-white header relative z-40 ${
+          navcolor ? "bg-[#4d4e52ef]" : "bg-transparent "
         } dark:bg-[#002D13] `}
       >
         {/* <div className="absolute -bottom-24 text-white text-3xl">
@@ -101,18 +106,19 @@ const Navbar = () => {
         <div className="logo-name ml-12">
           {/* <img src={logo} style = {{height: "50px",  width: "50px"}} alt="ganasuraksha party logo" className=" ml-10 pr-0" /> */}
           {/* <div className="party-name relative dark:text-white font-abril"> */}
-            {/* <span className=" font-abril text-5xl font-bold border-1 text-white border-white">
+          {/* <span className=" font-abril text-5xl font-bold border-1 text-white border-white">
               go
             </span>
             <span className="text-5xl font-bold border-1 text-white border-white font-abril">
               {" "}
               interior
             </span> */}
-            <img 
-            style ={{height: "100%", width: "100px"}}
-            src={logo} alt="go interior logo" 
+          <img
+            style={{ height: "100%", width: "100px" }}
+            src={logo}
+            alt="go interior logo"
             className="go-logo "
-            />
+          />
           {/* </div> */}
         </div>
         <div className="hidden md:flex self-center w-full">
@@ -170,7 +176,6 @@ const Navbar = () => {
           <div onClick={toggleHam} className={styles.navlink}>
             <Link to="about">login</Link>
           </div>
-    
         </nav>
         {/* </div> */}
 

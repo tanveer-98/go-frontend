@@ -4,7 +4,7 @@ import { OrbitControls } from '@react-three/drei';
 import {Model} from './Model'
 export default function Scene() {
    return (
-    <div className="w-full flex justify-center items-center">
+    <div className="w-full flex justify-center items-center h-[700px]">
 
       <Canvas
          camera={{ position: [2, 0, 12.25], fov: 15 }}

@@ -140,8 +140,10 @@ const Rooms = ({
 
   const handleFormSubmit = (e: any) => {
     e.preventDefault();
+    
+    console.log(data)
 
-    // handleResultChange({...result, ...data});
+    handleResultChange({...result, ...data});
 
     setTimeout(() => {
       handleStepChange(nextStep());

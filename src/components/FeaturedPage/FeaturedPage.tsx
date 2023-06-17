@@ -37,7 +37,7 @@ interface IProject {
 const FeaturedPage = () => {
   return (
     <div className="py-12 ">
-      <h2 className="font-ubuntu text-center block title font-bold text-white my-12">
+      <h2 className="title text-center block title font-bold text-white my-12">
         Featured Products
       </h2>
       <div className="w-full flex flex-col md:flex-row">

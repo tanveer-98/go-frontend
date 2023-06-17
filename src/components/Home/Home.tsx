@@ -19,6 +19,7 @@ import ThreeDModel from "../ThreeDModel/ThreeDModel";
 import BlurryBackground from "../BlurryBackground/BlurryBackground";
 import Scene from "../Scene/Scene";
 import FeaturedPage from "../FeaturedPage/FeaturedPage";
+import Services2 from "../Services2";
 const Home = ({}) => {
   return (
     <div className="relative overflow-hidden">
@@ -27,15 +28,15 @@ const Home = ({}) => {
         <Navbar />
       </div>
       <Hero />
-     
-      <Scene/>
-      <ServicesSection />
+      <Services2/>
+      {/* <Scene/> */}
+      {/* <ServicesSection /> */}
       <FeaturedPage/>
       <ProductsSection />
       <ContactForm />
       <Calculator/>
       {/* <ThreeDModel/> */}
-      <BlurryBackground />
+      {/* <BlurryBackground /> */}
       {/* <Scene/> */}
       {/* <BlurryBackground /> */}
       <Footer />

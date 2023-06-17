@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { IInitialState } from '../../../types';
 interface IPackage {
   result : IInitialState
@@ -8,6 +8,11 @@ interface IPackage {
   handleResultChange  :(updatedResult : IInitialState) => void; 
 }
 const Package = ({result , prevStep , nextStep , handleStepChange ,handleResultChange}:IPackage) => {
+
+  useEffect(()=>{
+    console.log("FIRST RENDER OF STEP 3");
+    console.log(result);
+  },[])
   return (
 <div className="w-full h-screen flex justify-center items-center flex-col">
       <div className="w-[80%] h-[80%] container bg-purple-500 rounded-md flex flex-col justify-center items-center">

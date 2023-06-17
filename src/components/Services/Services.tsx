@@ -5,9 +5,9 @@ import CardFlip from '../Card-flip/CardFlip';
 const ServicesSection = () => {
 
   return (
-    <section className="services-section">
-      <h2 className="title font-ubuntu">The Services We Offer ... </h2>
-      <div className="services-container">
+    <section className="services-section mt-32">
+      <h2 className="title font-bold">The Services We Offer ... </h2>
+      <div className="flex justify-center flex-wrap">
         {SERVICES.map((service, index) => 
           <CardFlip
           title = {service.title}

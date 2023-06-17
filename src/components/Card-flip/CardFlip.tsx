@@ -13,22 +13,22 @@ const CardFlip = ({ title, description, imgsrc }: IFlipCard) => {
   return (
     <a className="flipcard ">
       <div className="flipcard-content">
-        <div className="front   shadow-lg shadow-slate-700">
+        <div className="front shadow-md shadow-white text-5xl font-ubuntu">
           <img
             src={imgsrc}
             alt=""
             className="mix-blend-overlay opacity-90 h-full w-full cover  absolute"
           />
 
-          <p className="bg-slate-500 p-5  text-white backdrop-blur-lg">
+          <p className="  p-5  text-white "> 
             {title}
           </p>
         </div>
-        <div className="back bg-abstract shadow-lg shadow-slate-700">
+        <div className="back  shadow-sm shadow-white">
           <div>
-            <p>{description}</p>
+            <p className="text-2xl ">{description}</p>
             <div className="mt-2">
-              <button onClick={clickHandler} className="button">
+              <button onClick={clickHandler} className="button py-2 mt-4 ">
                 <div className="flex flex-row">
                   <span className="flex justify-center items-center pr-10">
                     <BsArrowUpRight />
