@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "title": "Full Home",
+    "description": "Get an approximate costing for your full home interiors."
+  },
+  {
+    "id": 2,
+    "title": "Kitchen",
+    "description": "Get an approximate costing for your full kitchen interiors."
+  },
+  {
+    "id": 3,
+    "title": "Wardrobe",
+    "description": "Get an approximate costing for your wardrobe."
+  }
+]

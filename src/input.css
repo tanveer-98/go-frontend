@@ -27,11 +27,11 @@
   --shadow-light: 0 2rem 5rem rgba(0, 0, 0, 0.06);
   --line: 1px solid var(--color-grey-light-2);
 }
-/* 
+ 
 $bp-largest: 75rem;
 $bp-large:68.75rem;
-$bp-medium:56.25rem; // 900px
-$bp-small: 39rem; */
+$bp-medium:56.25rem;
+$bp-small: 39rem;
 
 *,
 ::before,
@@ -720,9 +720,40 @@ SOCIALS
   color: #fff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   text-align: center;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .hamicon{
   z-index:999;
 }
+h2{
+  position: relative;
+  display: inline-block;
+}
+.header-bottom::after{
+  content: "";
+  display: block;
+  position: absolute;
+  bottom : -30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Additional styling properties for the after element */
+  width: 400px;
+  height: 4px;
+  border-radius: 50px;
+  background:radial-gradient(white, black);
+ 
+  
+}
+
+@media only
+screen and
+(max-width: 400px)
+{ 
+  .header-bottom::after{
+
+    bottom: -50%;
+    width:200px;
+  }
+}
+

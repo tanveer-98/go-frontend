@@ -7,7 +7,7 @@ import "react-multi-carousel/lib/styles.css";
 // import MultiCarousel from "../MultiCarousel";
 // import Card from "../TestimonialCard";
 // import ProductCard from "../Card2/Card2";
-import Calculator from '../Calculator'
+import Calculator from "../Calculator";
 // import design1 from "../../assets/design1.jpg";
 // import design2 from "../../assets/design2.jpg";
 // import design3 from "../../assets/design3.jpg";
@@ -18,7 +18,8 @@ import ContactForm from "../ContactForm/contact";
 // import ThreeDModel from "../ThreeDModel/ThreeDModel";
 // import BlurryBackground from "../BlurryBackground/BlurryBackground";
 // import Scene from "../Scene/Scene";
-import FeaturedPage from "../FeaturedPage/FeaturedPage";
+// import FeaturedPage from "../FeaturedPage/FeaturedPage";
+import WhyChooseUs from "../WhyChooseUs";
 import Services2 from "../Services2";
 const Home = ({}) => {
   return (
@@ -28,13 +29,14 @@ const Home = ({}) => {
         <Navbar />
       </div>
       <Hero />
-      <Services2/>
+      <Services2 />
+      <WhyChooseUs/>
       {/* <Scene/> */}
       {/* <ServicesSection /> */}
       {/* <FeaturedPage/> */}
       <ProductsSection />
       <ContactForm />
-      <Calculator/>
+      <Calculator />
       {/* <ThreeDModel/> */}
       {/* <BlurryBackground /> */}
       {/* <Scene/> */}

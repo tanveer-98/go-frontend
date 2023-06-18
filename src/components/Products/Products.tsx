@@ -55,7 +55,7 @@ const Products = () => {
   return (
 
     <div className="">
-    <h3 className="title pt-12 font-poppins">Our Products</h3>
+    <h3 className="title font-montserat relative header-bottom mt-24 mb-24">Our Products</h3>
     <div className="products-container">
       <div className="search-bar">
         <input

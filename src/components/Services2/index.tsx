@@ -11,7 +11,7 @@ const Services2 = () => {
 
   return (
     <div className="flex flex-col justify-center items-center h-full mt-[300px] md:mt-48 ">
-      <h2 className="hidden md:block title text-center title font-bold text-white my-12">
+      <h2 className="title font-montserat relative header-bottom mt-24 mb-24">
         Our Services
       </h2>
       <div className="bg-[rgba(17, 24, 39,1)] w-[80%] h-[80%]  rounded-lg flex flex-col md:flex-row md:flex shadow-sm shadow-gray-700">
