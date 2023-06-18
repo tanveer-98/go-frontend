@@ -5,7 +5,7 @@ import "react-multi-carousel/lib/styles.css";
 import Calculator from "../Calculator";
 import ProductsSection from "../Products/Products";
 import Footer from "../Footer/Footer";
-import ContactForm from "../ContactForm/contact";
+// import ContactForm from "../ContactForm/contact";
 import WhyChooseUs from "../WhyChooseUs";
 import Services2 from "../Services2";
 
@@ -43,7 +43,7 @@ const Home = ({}) => {
       {/* <ServicesSection /> */}
       {/* <FeaturedPage/> */}
       <ProductsSection />
-      <ContactForm />
+      {/* <ContactForm /> */}
       <Calculator />
       {/* <ThreeDModel/> */}
       {/* <BlurryBackground /> */}
