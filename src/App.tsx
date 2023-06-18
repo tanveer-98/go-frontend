@@ -10,9 +10,12 @@ const LazyRegister = React.lazy(()=>import('./routes/register'))
 
 import Auth from "./components/Auth/Auth";
 import HomeCalculator from "./components/HomeCalculator";
+import { useProgressiveImage } from "./hooks/useProgressiveImage";
 
+const source = './assets/images/abstract-textured-backgound.jpg';
 
 function App() {
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
