@@ -31,11 +31,11 @@ import Services2 from "../Services2";
 
 const Home = ({}) => {
   return (
-    <div className="relative">
+    <div className="relative overflow-hidden">
       {/* <div className="blur-circle"></div> */}
-      {/* <div className="fixed z-40  w-full"> */}
+      <div className="fixed z-40  w-full">
         <Navbar />
-      {/* </div> */}
+      </div>
       <Hero />
       <Services2 />
       <WhyChooseUs />

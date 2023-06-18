@@ -90,7 +90,7 @@ const Navbar = () => {
       </div>
       {/* bg-[#070707]  */}
       <header
-        className={`border-b-2 fixed border-white header top-0 w-full z-40 ${
+        className={`border-b-2 border-white header relative z-40 ${
           navcolor ? "bg-[#4d4e52ef]" : "bg-transparent "
         } dark:bg-[#002D13] `}
       >
