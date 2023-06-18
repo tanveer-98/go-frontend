@@ -16,7 +16,6 @@ const Navbar = () => {
   const toggleHam = () => {
     setHamIcon(!hamIcon);
 
-
     toggleScrollbar();
     // console.log("ham Icon toggled");
   };
@@ -76,7 +75,6 @@ const Navbar = () => {
   return (
     <>
       <div className="hamicon fixed top-9 right-10 md:hidden">
-        {" "}
         <img
           src={`${
             hamIcon

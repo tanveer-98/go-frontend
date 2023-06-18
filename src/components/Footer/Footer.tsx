@@ -76,7 +76,7 @@ const Footer = () => {
     </div>
   </div>
 
-    <div className="mx-6 py-10 flex w-full justify-center text-center md:text-left">
+    <div className=" py-10 flex w-full justify-center text-center md:text-left">
     <div className="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
      
       <div className="">
