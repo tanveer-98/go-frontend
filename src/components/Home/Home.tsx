@@ -31,8 +31,8 @@ import Services2 from "../Services2";
 
 const Home = ({}) => {
   return (
-    <div className="relative overflow-hidden">
-      <div className="blur-circle"></div>
+    <div className="relative overflow-hidden  bg-fixed bg-cover bg-no-repeat">
+      {/* <div className="blur-circle"></div> */}
       <div className="fixed z-40  w-full">
         <Navbar />
       </div>

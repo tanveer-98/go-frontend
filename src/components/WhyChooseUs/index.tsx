@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import DATA from "./data.json";
 
 const WhyChooseUs = () => {
+  useEffect(()=>{
+    console.log('Why choose us rendered')
+   })
   return (
     <div className="w-full  h-full mt-24">
       <div className="flex justify-center items center  flex-col">

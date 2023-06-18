@@ -12,7 +12,7 @@ const LazyHomeCalculator = React.lazy(()=>import('./components/HomeCalculator'))
 
 // import { useProgressiveImage } from "./hooks/useProgressiveImage";
 
-// const source = './assets/images/abstract-textured-backgound.jpg';
+
 
 function App() {
 

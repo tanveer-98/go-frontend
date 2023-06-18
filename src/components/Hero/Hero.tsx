@@ -16,11 +16,9 @@ const Hero = () => {
     document.getElementById(e.target.id)?.classList.add("circle-active");
     setCurrentPage(parseInt(e.target.id));
   };
-  // useEffect(()=>{
-  //   setTimeout(()=>{
-
-  //   },1000)
-  // })
+  useEffect(()=>{
+    console.log('hero rendered')
+  })
 
   return (
     <div className="flex relative z-1 justify-center items-center  h-[700px]   ">

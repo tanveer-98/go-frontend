@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DATA from "./data.json";
-import Faq from "../FAQ";
+// import Faq from "../FAQ";
 
 const Services2 = () => {
   const [currentItem, setCurrentItem] = useState(1);
@@ -8,7 +8,9 @@ const Services2 = () => {
   const handleClick = (id: number) => {
     setCurrentItem(id);
   };
-
+   useEffect(()=>{
+    console.log('Services 2 rendered')
+   })
   return (
     <div className="flex flex-col justify-center items-center h-full mt-[300px] md:mt-48 ">
       <h2 className="title font-montserat relative header-bottom mt-24 mb-24">

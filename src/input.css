@@ -53,7 +53,7 @@ body {
     
   ); */
   /* overflow-x: hidden; */
-  background-image: url('./assets/images/abstract-textured-backgound.webp');
+  /* background-image: url('./assets/images/abstract-textured-backgound.webp'); */
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -74,7 +74,6 @@ body {
 html {
   box-sizing: border-box;
   font-size: 62.5%;
-  background-image: url('./public/abstract-textured-backgound.jpg')
   /* background-color: #5f5e5f; */
   /* // 1rem = 10px , 10px/16 == 62.5% */
 }

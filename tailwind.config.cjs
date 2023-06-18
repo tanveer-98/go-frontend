@@ -25,6 +25,7 @@ module.exports = {
       backgroundImage: {
         interior: "url('./src/assets/interior-1.jpg')",
         abstract: "url('./src/assets/abstract.jpg')",
+        radial : "url('./src/assets/images/abstract-textured-backgound.webp')"
         // 'footer-texture': "url('/img/footer-texture.png')",
       },
       spacing: {
