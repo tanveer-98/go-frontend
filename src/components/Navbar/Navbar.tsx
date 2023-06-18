@@ -92,7 +92,7 @@ const Navbar = () => {
       <header
         className={`border-b-2 border-white header relative z-40 ${
           navcolor ? "bg-[#4d4e52ef]" : "bg-transparent "
-        } dark:bg-[#002D13] `}
+        }  `}
       >
         {/* <div className="absolute -bottom-24 text-white text-3xl">
           <span className="bg-black rounded-r-4xl p-4 font-bold text-white uppercase text-4xl ml-[10%]">

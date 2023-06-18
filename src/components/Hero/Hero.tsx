@@ -24,7 +24,7 @@ const Hero = () => {
 
   return (
     <div className="flex relative z-1 justify-center items-center  h-[700px]   ">
-      <div className="absolute left-[4%] top-40">
+      {/* <div className="absolute left-[4%] top-40">
         <div className="flex justify-center items-start flex-col ">
           <span className="bg-black inline-block rounded-r-4xl  px-2 py-2 font-bold text-white uppercase text-3xl   ">
             Build
@@ -33,7 +33,7 @@ const Hero = () => {
             Your Dream Home With Us
           </p>
         </div>
-      </div>
+      </div> */}
       <div
         className="blur-load"
         // style={{backgroundImage : `${bgImages[currentPage-1]}`}}>

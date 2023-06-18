@@ -1,26 +1,28 @@
-// import React from "react";
+import React from "react";
 import Navbar from "../Navbar/Navbar";
 import Hero from "../Hero/Hero";
+import "react-multi-carousel/lib/styles.css";
+
+const LazyCalculator = React.lazy(() => import("../Calculator"));
+const LazyProductsSection = React.lazy(() => import("../Products/Products"));
+const LazyFooter = React.lazy(() => import("../Footer/Footer"));
+const LazyContactForm = React.lazy(() => import("../ContactForm/contact"));
+const LazyWhyChooseUs = React.lazy(() => import("../WhyChooseUs"));
+const LazyServices2 = React.lazy(() => import("../Services2"));
 
 // import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
 // import MultiCarousel from "../MultiCarousel";
 // import Card from "../TestimonialCard";
 // import ProductCard from "../Card2/Card2";
-import Calculator from "../Calculator";
 // import design1 from "../../assets/design1.jpg";
 // import design2 from "../../assets/design2.jpg";
 // import design3 from "../../assets/design3.jpg";
 // import ServicesSection from "../Services/Services";
-import ProductsSection from "../Products/Products";
-import Footer from "../Footer/Footer";
-import ContactForm from "../ContactForm/contact";
 // import ThreeDModel from "../ThreeDModel/ThreeDModel";
 // import BlurryBackground from "../BlurryBackground/BlurryBackground";
 // import Scene from "../Scene/Scene";
 // import FeaturedPage from "../FeaturedPage/FeaturedPage";
-import WhyChooseUs from "../WhyChooseUs";
-import Services2 from "../Services2";
+
 const Home = ({}) => {
   return (
     <div className="relative overflow-hidden">
@@ -29,19 +31,19 @@ const Home = ({}) => {
         <Navbar />
       </div>
       <Hero />
-      <Services2 />
-      <WhyChooseUs/>
+      <LazyServices2 />
+      <LazyWhyChooseUs />
       {/* <Scene/> */}
       {/* <ServicesSection /> */}
       {/* <FeaturedPage/> */}
-      <ProductsSection />
-      <ContactForm />
-      <Calculator />
+      <LazyProductsSection />
+      <LazyContactForm />
+      <LazyCalculator />
       {/* <ThreeDModel/> */}
       {/* <BlurryBackground /> */}
       {/* <Scene/> */}
       {/* <BlurryBackground /> */}
-      <Footer />
+      <LazyFooter />
     </div>
   );
 };

@@ -1,16 +1,21 @@
 import { Link } from "react-router-dom";
 import DATA from "./data.json";
 const links = ["/homeCalculator", "/kitchenCalculator", "/wardrobeCalculator"];
-const Card = ({ id, link }: { id: number; link: string }) => {
+interface IData{
+  id : number ; 
+  title : string; 
+  description: string;
+}
+const Card = ({ data , link }: { data :IData , link: string }) => {
   console.log(link);
   return (
     <div
-      key={id}
+      key={data.id}
       className="w-[250px] py-8 h-full md:h-full rounded-md border-2 border-[#ffffff34] bg-[#ffffff34] flex  flex-col justify-center items-center"
     >
-      <h2 className="title">Title</h2>
+      <h2 className="title">{data.title}</h2>
       <p className=" my-8  text-xl md:text-2xl font-montserat tracking-tight text-slate-300 mx-auto text-justify px-8">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        {data.description}
       </p>
       <button
         className="
@@ -49,7 +54,7 @@ const Calculator = () => {
         <div className="flex justify-center items-center w-full h-full mt-24">
           <div className="flex gap-2 flex-wrap h-full w-full justify-center items-center ">
             {DATA.map((element) => {
-              return <Card id={element.id} link={links[element.id - 1]} />;
+              return <Card data = {element}  link={links[element.id - 1]} />;
             })}
           </div>
         </div>
