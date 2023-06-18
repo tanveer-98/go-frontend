@@ -46,10 +46,10 @@ const Hero = () => {
           loading="lazy"
         />
       </div>
-      <div className="flex w-full h-full items-center justify-center relative mx-8">
+      <div className="flex w-full h-full items-center justify-center relative ">
         <div
           className="flex-2 font-ubuntu text-white tracking-widest text-left font-bold md:font-normal text-6xl flex justify-center 
-        md:text-center  px-28 relative z-30 "
+        md:text-center  px-12 md:px-28 relative z-30 "
         >
           <span className="font-thin text-transparent text-center bg-clip-text  bg-gradient-to-b from-[white] to-[#8d85a1]">
             <h3 className="text-8xl text-center md:font-bold ">Welcome to Go Interior</h3>
