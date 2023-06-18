@@ -44,7 +44,7 @@ const Services2 = () => {
               <div className="p-10 ml-2 w-full h-[80%]  mt-10 md:mt-0 shadow-sm  drop-shadow-sm drop-shadow-white rounded-md ">
                 <div className="flex items-center gap-10">
                   <img
-                    src="interior.jpg"
+                    src="interior.webp"
                     alt="image not found"
                     className="h-[80px] w-[80px] md:h-[200px] md:w-[200px] rounded-md"
                   />

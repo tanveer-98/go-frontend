@@ -2,13 +2,19 @@ import React from "react";
 import Navbar from "../Navbar/Navbar";
 import Hero from "../Hero/Hero";
 import "react-multi-carousel/lib/styles.css";
+import Calculator from "../Calculator";
+import ProductsSection from "../Products/Products";
+import Footer from "../Footer/Footer";
+import ContactForm from "../ContactForm/contact";
+import WhyChooseUs from "../WhyChooseUs";
+import Services2 from "../Services2";
 
-const LazyCalculator = React.lazy(() => import("../Calculator"));
-const LazyProductsSection = React.lazy(() => import("../Products/Products"));
-const LazyFooter = React.lazy(() => import("../Footer/Footer"));
-const LazyContactForm = React.lazy(() => import("../ContactForm/contact"));
-const LazyWhyChooseUs = React.lazy(() => import("../WhyChooseUs"));
-const LazyServices2 = React.lazy(() => import("../Services2"));
+// const LazyCalculator = React.lazy(() => import("../Calculator"));
+// const LazyProductsSection = React.lazy(() => import("../Products/Products"));
+// const LazyFooter = React.lazy(() => import("../Footer/Footer"));
+// const LazyContactForm = React.lazy(() => import("../ContactForm/contact"));
+// const LazyWhyChooseUs = React.lazy(() => import("../WhyChooseUs"));
+// const LazyServices2 = React.lazy(() => import("../Services2"));
 
 // import Carousel from "react-multi-carousel";
 // import MultiCarousel from "../MultiCarousel";
@@ -31,19 +37,19 @@ const Home = ({}) => {
         <Navbar />
       </div>
       <Hero />
-      <LazyServices2 />
-      <LazyWhyChooseUs />
+      <Services2 />
+      <WhyChooseUs />
       {/* <Scene/> */}
       {/* <ServicesSection /> */}
       {/* <FeaturedPage/> */}
-      <LazyProductsSection />
-      <LazyContactForm />
-      <LazyCalculator />
+      <ProductsSection />
+      <ContactForm />
+      <Calculator />
       {/* <ThreeDModel/> */}
       {/* <BlurryBackground /> */}
       {/* <Scene/> */}
       {/* <BlurryBackground /> */}
-      <LazyFooter />
+      <Footer />
     </div>
   );
 };
