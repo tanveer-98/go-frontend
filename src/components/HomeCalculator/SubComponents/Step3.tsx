@@ -52,9 +52,9 @@ const Package = ({
             {PACKAGE_DATA.map((data) => (
               <div
                 onClick={() => handleChecked(data.id)}
-                className=" cursor-pointer p-10 ml-2 w-[80%] h-[80%] self-center  mt-5 shadow-sm bg-[#ffffff2c]   drop-shadow-sm drop-shadow-white rounded-md "
+                className="cursor-pointer p-10 ml-2 w-[80%] h-[80%] self-center  mt-5 shadow-sm bg-[#ffffff1e]   drop-shadow-sm drop-shadow-white rounded-md "
               >
-                <div className="flex items-center gap-10">
+                <div className="flex items-center gap-10 flex-wrap">
                   <input type="text" className="hidden" readOnly value={data.id} name="id" />
                   <input
                     checked={checkedValue == data.id}
@@ -78,7 +78,7 @@ const Package = ({
                 </p>
                 <div className="flex  flex-col justify-start mt-8">
                   {data.advantages != null ? (
-                    <h2 className="text-2xl md:text-3xl tracking-tight font-semibold text-white">
+                    <h2 className="text-2xl md:text-3xl tracking-tight font-semibold text-slate-400">
                       Advantages
                     </h2>
                   ) : (
