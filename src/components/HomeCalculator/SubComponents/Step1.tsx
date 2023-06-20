@@ -92,6 +92,14 @@ const BHK = ({
         bhkSize : updatedData.bhkSize
       }
     }
+    const {id ,bhkType , bhkSize} = formattedData.bhkDetails;
+
+    if( (id==2 || id==3 ||id==4 ) && (formattedData.bhkDetails.bhkType == null || formattedData.bhkDetails.bhkSize==null))
+    {
+      alert();
+      return ; 
+
+    }
     // console.log("FORMATTED DATA FOR STEP 1");
     // console.log(formattedData)
     // console.log("RESULT")
