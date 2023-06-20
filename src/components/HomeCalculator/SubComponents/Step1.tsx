@@ -71,6 +71,7 @@ const BHK = ({
   //   const [checked, setChecked] = useState<Boolean>(false);
   const [checkedValue, setCheckedValue] = useState<string | null>(null);
   const [selectedId , setSelectedId] = useState<number|null>(null);
+  const [bhkSizeId , setBhkSizeId] = useState<number|null>(null)
   const alert = () => toast("Unable to Proceed. Select Option");
 
   const handleFormSubmit = (e: any) => {
@@ -119,6 +120,10 @@ const BHK = ({
     setCheckedValue(e.target.value);
   };
 
+  const handleBhkSize = (id : number)=>{
+    setBhkSizeId(id);
+
+  }
   return (
     <div className="font-ubuntu w-full h-screen flex justify-center items-center flex-col">
       <div className="shadow-md shadow-black w-[400px] h-[80%] container bg-[#ffffff2c] rounded-md flex flex-col justify-center items-center">
@@ -196,6 +201,7 @@ const BHK = ({
                             <label
                               htmlFor="bhkSize"
                               id="bhkSizeLabel"
+                              onClick={()=>handleBhkSize(element.id)}
                               className="bg-[#ffffff2c] px-2 py-1 rounded-md shadow-lg shadow-black"
                             >
                               <h5>{element.title}</h5>
@@ -204,6 +210,7 @@ const BHK = ({
                                 id="bhkSize"
                                 name="bhkSize"
                                 type="radio"
+                                checked = {selectedId== element.id}
                                 value={element.title}
                               />
                             </label>
