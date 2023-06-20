@@ -19,7 +19,7 @@ const Services2 = () => {
       <div className="bg-[rgba(17, 24, 39,1)] w-[80%] h-[80%]  rounded-lg flex flex-col md:flex-row md:flex shadow-sm shadow-gray-700">
         <div className="flex flex-col md:flex-row w-full h-full ">
           <div className="flex justify-center items-center">
-            <div className="px-24 md:px-8 justify-around md:h-full flex md:flex-col flex-row overflow-x-auto md:overflow-hidden bg-[#222121d5] rounded-lg ">
+            <div className="md:px-8 justify-start md:justify-around md:h-full flex md:flex-col flex-row overflow-x-scroll md:overflow-hidden bg-[#222121d5] rounded-lg ">
               {DATA.map((element) => (
                 <button
                   onClick={() => handleClick(element.id)}

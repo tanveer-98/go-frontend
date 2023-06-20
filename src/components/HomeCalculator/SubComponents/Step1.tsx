@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IInitialState } from "../../../types";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const BHKDATA = [
   {
     id: 1,
@@ -43,43 +43,46 @@ export interface IBHK {
   result: IInitialState;
   nextStep: () => number;
   handleStepChange: (updatedValue: number) => any;
-  handleResultChange : (updatedResult : IInitialState) => void; 
+  handleResultChange: (updatedResult: IInitialState) => void;
 }
 // update the Interface type
 const getData = (form: any) => {
-//   console.log(form);
+  //   console.log(form);
   const data = new FormData(form);
-//   console.log(data);
+  //   console.log(data);
 
   // method 1: loop
-//   for (let [key, value] of Object.entries(data)) {
-//     console.log(key + "     " + value);
-//   }
+  //   for (let [key, value] of Object.entries(data)) {
+  //     console.log(key + "     " + value);
+  //   }
   // method 2 : output as Object only
 
   return Object.fromEntries(data.entries());
 };
 
-const BHK = ({ result,nextStep, handleStepChange ,handleResultChange }: IBHK) => {
-
-//   const [checked, setChecked] = useState<Boolean>(false);
+const BHK = ({
+  result,
+  nextStep,
+  handleStepChange,
+  handleResultChange,
+}: IBHK) => {
+  //   const [checked, setChecked] = useState<Boolean>(false);
   const [checkedValue, setCheckedValue] = useState<string | null>(null);
 
-  const alert  = ()=> toast("Unable to Proceed. Select Option");
+  const alert = () => toast("Unable to Proceed. Select Option");
 
   const handleFormSubmit = (e: any) => {
     e.preventDefault();
-    if(checkedValue === null) {
-        alert();
-        return;
+    if (checkedValue === null) {
+      alert();
+      return;
     }
     // console.log(e.target);
     const updatedData = getData(e.target);
-    console.log(updatedData)
-    handleResultChange({...result, ...updatedData});
+    console.log(updatedData);
+    handleResultChange({ ...result, ...updatedData });
 
-
-    setTimeout(() => {  
+    setTimeout(() => {
       handleStepChange(nextStep());
     }, 1000);
 
@@ -88,7 +91,6 @@ const BHK = ({ result,nextStep, handleStepChange ,handleResultChange }: IBHK) =>
 
   const handleInputChange = (e: any) => {
     console.log("radio clicked with value : " + e.target.value);
-
     setCheckedValue(e.target.value);
   };
 
@@ -99,21 +101,28 @@ const BHK = ({ result,nextStep, handleStepChange ,handleResultChange }: IBHK) =>
           Select BHK Type
         </h1>
         <ToastContainer
-       position="top-center"
-       autoClose={5000}
-       hideProgressBar={false}
-       newestOnTop={false}
-       closeOnClick
-       rtl={false}
-       pauseOnFocusLoss
-       draggable
-       pauseOnHover
-       theme="light"/>
-        <form onSubmit={(e) => handleFormSubmit(e)} className="w-[80%] flex justify-center flex-col items-center">
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+        <form
+          onSubmit={(e) => handleFormSubmit(e)}
+          className="w-[80%] flex justify-center flex-col items-center"
+        >
           {BHKDATA.map((data: any, idx) => {
             if (data.size === null) {
               return (
-                <div key={idx} className=" flex items-center gap-2 justify-center w-[80%]   h-[50px] bg-purple-600 rounded-md shadow-md shadow-black my-2">
+                <div
+                  key={idx}
+                  className=" flex items-center gap-2 justify-center w-[80%]   h-[50px] bg-purple-600 rounded-md shadow-md shadow-black my-2"
+                >
                   <input
                     className="mx-2"
                     type="radio"
@@ -131,7 +140,10 @@ const BHK = ({ result,nextStep, handleStepChange ,handleResultChange }: IBHK) =>
               );
             } else {
               return (
-                <div key={idx} className="flex flex-col items-center gap-2  w-[80%]  bg-purple-600 rounded-md shadow-md shadow-black my-2">
+                <div
+                  key={idx}
+                  className="flex flex-col items-center gap-2  w-[80%]  bg-purple-600 rounded-md shadow-md shadow-black my-2"
+                >
                   <div className="flex flex-row">
                     <input
                       className="mx-2"
