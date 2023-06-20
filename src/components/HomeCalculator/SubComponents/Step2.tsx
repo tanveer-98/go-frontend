@@ -4,6 +4,7 @@ import { AiOutlinePlusCircle as Plus } from "react-icons/ai";
 import { AiOutlineMinusCircle as Minus } from "react-icons/ai";
 import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
+import { generateKey } from "../../../utility/uniqueKey";
 
 const INIT = [
   {
@@ -122,22 +123,22 @@ const Rooms = ({
   // },[])
 
   useEffect(() => {
-    // console.log("FIRST RENDER");
-    // console.log(result);
+    console.log("FIRST RENDER");
+    console.log(result);
     const values = new Map();
     values.set("1BHK", 1);
     values.set("2BHK", 2);
     values.set("3BHK", 3);
     values.set("4BHK", 4);
     values.set("5BHK", 5);
-    setBHKType(values.get(result.bhkType));
+    setBHKType(values.get(result.bhkDetails?.bhkType));
 
     const defaultarrToUpdate = data
       .filter((data) => ["Kitchen", "Bedroom", "Bathroom"].includes(data.type))
       .map((data) => {
         // console.log("inside map function");
         // console.log(data);
-        const newObj = { ...data, quantity: values.get(result.bhkType) };
+        const newObj = { ...data, quantity: values.get(result.bhkDetails?.bhkType) };
         return newObj;
       });
     const defaultarrToNotUpdate = data.filter(
@@ -154,6 +155,7 @@ const Rooms = ({
   const handleFormSubmit = (e: any) => {
     e.preventDefault();
 
+    console.log("STEP 2 DATA")
     console.log(data);
     //  console.log();
 
@@ -164,11 +166,16 @@ const Rooms = ({
       notify();
       return;
     }
-
-    handleResultChange({ ...result, ...data });
+  
+    const formattedData = {
+      RoomDesign : data
+    }
+    console.log("FORMATTED DATA")
+    console.log(formattedData)
+    handleResultChange({ ...result, ...formattedData});
 
     // setTimeout(() => {
-    // handleStepChange(nextStep());
+    handleStepChange(nextStep());
     // }, 3000);
 
     // e.target.reset();
@@ -198,9 +205,9 @@ const Rooms = ({
           onSubmit={(e) => handleFormSubmit(e)}
           className="w-[80%] flex justify-center flex-col items-center"
         >
-          {data.map((element: any, index: number) => {
+          {data.map((element, index: number) => {
             return (
-              <div className="w-[250px] md:w-[300px]">
+              <div key={generateKey(element.type)} className="w-[250px] md:w-[300px]">
                 <label
                   htmlFor={element.type}
                   className="font-ubuntu px-6 py-2 flex flex-row items-center gap-2 bg-[#ffffff2c]  w-full  rounded-md shadow-md shadow-black my-2"
@@ -216,13 +223,17 @@ const Rooms = ({
                       type="button"
                       onClick={() => handleIncrement(element.type)}
                     >
-                      <Plus size={22} color="white" />
+                      <Plus 
+                      className="hover:text-gray-700 text-gray-400"
+                      size={22}  />
                     </button>
                     <button
                       type="button"
                       onClick={() => handleDecrement(element.type)}
                     >
-                      <Minus size={22} color="white" />
+                      <Minus size={22} 
+                      
+                      className="hover:text-gray-700 text-gray-400"/>
                     </button>
                   </div>
                 </label>

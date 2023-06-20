@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { IInitialState } from "../../../types";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { IBHKDetails } from "../../../types";
+import { generateKey } from "../../../utility/uniqueKey";
 const BHKDATA = [
   {
     id: 1,
@@ -46,7 +48,7 @@ export interface IBHK {
   handleResultChange: (updatedResult: IInitialState) => void;
 }
 // update the Interface type
-const getData = (form: any) => {
+export const getData = (form: any) => {
   //   console.log(form);
   const data = new FormData(form);
   //   console.log(data);
@@ -68,19 +70,33 @@ const BHK = ({
 }: IBHK) => {
   //   const [checked, setChecked] = useState<Boolean>(false);
   const [checkedValue, setCheckedValue] = useState<string | null>(null);
-
+  const [selectedId , setSelectedId] = useState<number|null>(null);
   const alert = () => toast("Unable to Proceed. Select Option");
 
   const handleFormSubmit = (e: any) => {
     e.preventDefault();
+    // console.log(e.target)
     if (checkedValue === null) {
       alert();
       return;
     }
-    // console.log(e.target);
-    const updatedData = getData(e.target);
-    console.log(updatedData);
-    handleResultChange({ ...result, ...updatedData });
+    // console.log(e.target)
+    const updatedData = getData(e.target) as unknown as IBHKDetails;
+
+    // console.log("UPDATED DATA");
+    // console.log(updatedData);
+    const formattedData = {
+      bhkDetails : {
+        id: selectedId  as number,
+        bhkType : updatedData.bhkType,
+        bhkSize : updatedData.bhkSize
+      }
+    }
+    // console.log("FORMATTED DATA FOR STEP 1");
+    // console.log(formattedData)
+    // console.log("RESULT")
+    // console.log(result)
+    handleResultChange({ ...result, ...formattedData });
 
     setTimeout(() => {
       handleStepChange(nextStep());
@@ -89,14 +105,15 @@ const BHK = ({
     // e.target.reset();
   };
 
-  const handleInputChange = (e: any) => {
-    console.log("radio clicked with value : " + e.target.value);
+  const handleInputChange = (e: any , id : number) => {
+    // console.log("radio clicked with value : " + e.target.value);
+    setSelectedId(id)
     setCheckedValue(e.target.value);
   };
 
   return (
-    <div className="font-ubuntu w-full h-screen flex justify-center items-center flex-col bg-[#ffffd5]">
-      <div className="shadow-md shadow-black w-[400px] h-[80%] container bg-purple-500 rounded-md flex flex-col justify-center items-center">
+    <div className="font-ubuntu w-full h-screen flex justify-center items-center flex-col">
+      <div className="shadow-md shadow-black w-[400px] h-[80%] container bg-[#ffffff2c] rounded-md flex flex-col justify-center items-center">
         <h1 className="text-3xl md:text-5xl text-white font-bold drop-shadow-md mb-2">
           Select BHK Type
         </h1>
@@ -120,15 +137,16 @@ const BHK = ({
             if (data.size === null) {
               return (
                 <div
-                  key={idx}
-                  className=" flex items-center gap-2 justify-center w-[80%]   h-[50px] bg-purple-600 rounded-md shadow-md shadow-black my-2"
+                  key={generateKey(data.type)}
+                  className=" flex items-center gap-2 justify-center w-[80%]   h-[50px] bg-[#ffffff2c] rounded-md shadow-md shadow-black my-2"
                 >
+                
                   <input
                     className="mx-2"
                     type="radio"
                     value={data.type}
                     name="bhkType"
-                    onChange={(e) => handleInputChange(e)}
+                    onChange={(e) => handleInputChange(e ,data.id)}
                   ></input>
                   <label
                     htmlFor="bhkType"
@@ -141,8 +159,8 @@ const BHK = ({
             } else {
               return (
                 <div
-                  key={idx}
-                  className="flex flex-col items-center gap-2  w-[80%]  bg-purple-600 rounded-md shadow-md shadow-black my-2"
+                  key={generateKey(data.type)}
+                  className="flex flex-col items-center gap-2  w-[80%]  bg-[#ffffff2c] rounded-md shadow-md shadow-black my-2"
                 >
                   <div className="flex flex-row">
                     <input
@@ -150,7 +168,7 @@ const BHK = ({
                       name="bhkType"
                       value={data.type}
                       type="radio"
-                      onChange={(e) => handleInputChange(e)}
+                      onChange={(e) => handleInputChange(e , data.id)}
                     />
                     <label
                       htmlFor="bhkType"
@@ -170,7 +188,7 @@ const BHK = ({
                             <label
                               htmlFor="bhkSize"
                               id="bhkSizeLabel"
-                              className="bg-purple-400 px-2 py-1 rounded-md shadow-lg shadow-black"
+                              className="bg-[#ffffff2c] px-2 py-1 rounded-md shadow-lg shadow-black"
                             >
                               <h5>{element.title}</h5>
                               <p>{element.desc}</p>
@@ -204,7 +222,7 @@ const BHK = ({
             }
           })}
           <button
-            className="w-[80px] shadow-md shadow-black  bg-purple-600 text-2xl  text-white px-4 py-2 hover:shadow-none rounded-md"
+            className="w-[80px] shadow-md shadow-black  bg-[#ffffff2c] text-2xl  text-white px-4 py-2 hover:shadow-none rounded-md"
             //   onClick={() => handleChange(nextStep())}
             type="submit"
           >

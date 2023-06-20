@@ -84,8 +84,7 @@ const CurrentComponent = ({
 };
 
 const initialState: IInitialState = {
-  bhkType: null,
-  bhkSize: null,
+  bhkDetails: null,
   RoomDesign: null,
   PackagePicked: null,
   getQuote: null,
