@@ -1,7 +1,9 @@
-import React, { useEffect, useReducer, useRef, useState } from "react";
+import React, { useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { IInitialState } from "../../../types";
 import { AiOutlinePlusCircle as Plus } from "react-icons/ai";
 import { AiOutlineMinusCircle as Minus } from "react-icons/ai";
+import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 const INIT = [
   {
@@ -87,74 +89,107 @@ const Rooms = ({
 }: IRooms) => {
   // const [state, dispatch] = useReducer(reducerFunc, INIT);
   const [data, setData] = useState(INIT);
-  const [bhkType, setBHKType] = useState<number>(1)
+  const [bhkType, setBHKType] = useState<number>(1);
+  const [isNull, setIsNull] = useState<boolean>(false);
+  // const [bhkMap , setBHKMap] = useState<Map<string,number>|null>(null);
   // const [minvalues , setMinvalues]
   const handleIncrement = (type: string) => {
-    
     console.log(type + "INCREMENTED");
-    const filterarr = data.filter((element)=>element.type!=type);
-    const updatedarr  = data.filter((element)=>element.type==type);
-    if(updatedarr[0].quantity >= bhkType) return;
-    updatedarr[0].quantity = updatedarr[0].quantity+1;
+    const filterarr = data.filter((element) => element.type != type);
+    const updatedarr = data.filter((element) => element.type == type);
+    if (updatedarr[0].quantity >= bhkType) return;
+    updatedarr[0].quantity = updatedarr[0].quantity + 1;
 
+    const newarr = [...filterarr, ...updatedarr];
 
-    const newarr = [...filterarr,...updatedarr];
-
-    setData(newarr.sort((a,b)=>a.id-b.id));
+    setData(newarr.sort((a, b) => a.id - b.id));
   };
 
   const handleDecrement = (type: string) => {
     console.log(type + "DECREMENTED");
-    const filterarr = data.filter((element)=>element.type!=type);
-    const updatedarr  = data.filter((element)=>element.type==type);
-    if(updatedarr[0].quantity==0) return ;
-    updatedarr[0].quantity = updatedarr[0].quantity-1;
+    const filterarr = data.filter((element) => element.type != type);
+    const updatedarr = data.filter((element) => element.type == type);
+    if (updatedarr[0].quantity == 0) return;
+    updatedarr[0].quantity = updatedarr[0].quantity - 1;
 
-    const newarr = [...filterarr,...updatedarr];
+    const newarr = [...filterarr, ...updatedarr];
 
-    setData(newarr.sort((a,b)=>a.id-b.id));
+    setData(newarr.sort((a, b) => a.id - b.id));
   };
+
+  // const bhkmap = useMemo(()=>{
+
+  // },[])
 
   useEffect(() => {
     // console.log("FIRST RENDER");
     // console.log(result);
     const values = new Map();
-    values.set("1BHK",1);
-    values.set("2BHK",2);
-    values.set("3BHK",3);
-    values.set("4BHK",4);
-    values.set("5BHK",5);
+    values.set("1BHK", 1);
+    values.set("2BHK", 2);
+    values.set("3BHK", 3);
+    values.set("4BHK", 4);
+    values.set("5BHK", 5);
     setBHKType(values.get(result.bhkType));
-    
-    const defaultarrToUpdate = data.filter(data => ["Kitchen", "Bedroom","Bathroom"].includes(data.type)).map(data =>{
-      // console.log("inside map function");
-      // console.log(data);
-      const newObj = {...data , quantity : values.get(result.bhkType)}
-      return newObj; 
-    });
-    const defaultarrToNotUpdate = data.filter(data => !["Kitchen", "Bedroom","Bathroom"].includes(data.type)); 
-    // console.log(defaultarrToUpdate)
-    setData([...defaultarrToNotUpdate , ...defaultarrToUpdate].sort((a,b)=>a.id-b.id));
 
+    const defaultarrToUpdate = data
+      .filter((data) => ["Kitchen", "Bedroom", "Bathroom"].includes(data.type))
+      .map((data) => {
+        // console.log("inside map function");
+        // console.log(data);
+        const newObj = { ...data, quantity: values.get(result.bhkType) };
+        return newObj;
+      });
+    const defaultarrToNotUpdate = data.filter(
+      (data) => !["Kitchen", "Bedroom", "Bathroom"].includes(data.type)
+    );
+    // console.log(defaultarrToUpdate)
+    setData(
+      [...defaultarrToNotUpdate, ...defaultarrToUpdate].sort(
+        (a, b) => a.id - b.id
+      )
+    );
   }, []);
 
   const handleFormSubmit = (e: any) => {
     e.preventDefault();
-    
-    console.log(data)
 
-    handleResultChange({...result, ...data});
+    console.log(data);
+    //  console.log();
 
-    setTimeout(() => {
-      handleStepChange(nextStep());
-    }, 3000);
+    const nullcheck = data.reduce((acc, curr) => {
+      return curr.quantity + acc;
+    }, 0);
+    if (nullcheck == 0) {
+      notify();
+      return;
+    }
+
+    handleResultChange({ ...result, ...data });
+
+    // setTimeout(() => {
+    // handleStepChange(nextStep());
+    // }, 3000);
 
     // e.target.reset();
   };
+  const notify = () => toast("Error : Selection Cannot Be Empty");
 
   return (
-    <div className="w-full h-screen flex justify-center items-center flex-col">
-      <div className="w-[80%] h-[80%] container bg-purple-500 rounded-md flex flex-col justify-center items-center">
+    <div className=" font-montserat w-full h-screen flex justify-center items-center flex-col">
+      <div className="w-[80%] h-[80%] container bg-[#ffffff2c] rounded-md flex flex-col justify-center items-center">
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
         <h1 className="text-3xl md:text-5xl text-white font-bold drop-shadow-md mb-2">
           ROOM Selector
         </h1>
@@ -165,16 +200,18 @@ const Rooms = ({
         >
           {data.map((element: any, index: number) => {
             return (
-              <div className="w-[300px]">
+              <div className="w-[250px] md:w-[300px]">
                 <label
                   htmlFor={element.type}
-                  className="px-6 py-2 flex flex-row items-center gap-2  w-full bg-purple-600 rounded-md shadow-md shadow-black my-2"
+                  className="font-ubuntu px-6 py-2 flex flex-row items-center gap-2 bg-[#ffffff2c]  w-full  rounded-md shadow-md shadow-black my-2"
                 >
                   <h3 className="flex-2 text-white text-2xl md:text-4xl font-bold inline">
                     {element.type}
                   </h3>
                   <div className="flex flex-row gap-2 flex-1 justify-end">
-                    <h3 className="text-xl md:text-2xl flex items-center justify-center text-white">{element.quantity}</h3>
+                    <h3 className="text-xl md:text-2xl flex items-center justify-center text-white">
+                      {element.quantity}
+                    </h3>
                     <button
                       type="button"
                       onClick={() => handleIncrement(element.type)}
@@ -195,13 +232,13 @@ const Rooms = ({
 
           <div className="flex flex-wrap justify-center items-center gap-1">
             <button
-              className="w-[80px] shadow-md shadow-black  bg-purple-600 text-2xl  text-white px-4 py-2 hover:shadow-sm hover:shadow-black rounded-md"
+              className="w-[80px] shadow-md shadow-black  bg-[#ffffff2c] text-2xl  text-white px-4 py-2 hover:shadow-sm hover:shadow-black rounded-md"
               onClick={() => handleStepChange(prevStep())}
             >
               Prev
             </button>
             <button
-              className="w-[80px] shadow-md shadow-black  bg-purple-600 text-2xl  text-white px-4 py-2 hover:shadow-sm hover:shadow-black  rounded-md"
+              className="w-[80px] shadow-md shadow-black  bg-[#ffffff2c] text-2xl  text-white px-4 py-2 hover:shadow-sm hover:shadow-black  rounded-md"
               type="submit"
             >
               Next
