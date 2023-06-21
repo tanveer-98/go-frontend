@@ -4,6 +4,7 @@ import PACKAGE_DATA from "./step3.json";
 import { getData } from "./Step1";
 import { IPackagePicked } from "../../../types";
 import { generateKey } from "../../../utility/uniqueKey";
+import { ToastContainer, toast } from "react-toastify";
 interface IPackage {
   result: IInitialState;
   prevStep: () => number;
@@ -18,7 +19,7 @@ const Package = ({
   handleStepChange,
   handleResultChange,
 }: IPackage) => {
-  const [checkedValue, setChecked] = useState(0);
+  const [checkedValue, setChecked] = useState<number|null>(null);
 
   const handleChecked = (id: number) => {
     console.log("clicked");
@@ -29,9 +30,16 @@ const Package = ({
     console.log(result);
   }, []);
 
+  const Alert = ()=> toast("Please Select a Package");
+
   const handleFormSubmit = (e: any) => {
     e.preventDefault();
 
+    if(checkedValue == null){
+      Alert(); 
+      return ;
+
+    }
     const data  = getData(e.target) as unknown as IPackagePicked;
     const newdata = {
       PackagePicked : data
@@ -43,16 +51,41 @@ const Package = ({
   };
   return (
     <div className="font-montserat font-thin w-full h-full flex justify-center items-center flex-col">
+       <ToastContainer
+       limit = {3}
+       position="top-center"
+       autoClose={5000}
+       hideProgressBar={false}
+       newestOnTop={false}
+       closeOnClick
+       rtl={false}
+       style = {{
+        background : "red"
+       }}
+      //  className="bg-slate-300"
+       toastClassName="bg-black"
+       pauseOnFocusLoss
+       draggable
+       pauseOnHover
+       theme="light"  
+       />
       <div className="w-[80%] h-[90%] my-10 py-10 bg-[#ffffff2c] rounded-md flex flex-col justify-center items-center">
         <h1 className="text-3xl md:text-5xl text-white font-bold">
           Select Package
         </h1>
         <form onSubmit={handleFormSubmit}>
-          <div className="h-full w-full my-10   flex flex-col overflow-y-auto items-start ">
+          <div className="h-full w-full    flex flex-col overflow-y-auto items-start ">
             {PACKAGE_DATA.map((data) => (
               <div
                 onClick={() => handleChecked(data.id)}
-                className="cursor-pointer p-10 ml-2 w-[80%] h-[80%] self-center  mt-5 shadow-sm bg-[#ffffff1e]   drop-shadow-sm drop-shadow-white rounded-md "
+                
+                className = {`
+                ${checkedValue == data.id ? "shadow-sm shadow-black " :"shadow-lg shadow-black"}
+                
+                hover:shadow-sm hover:shadow-black
+                 
+                cursor-pointer p-10 ml-2 w-[80%] h-[80%] self-center  mt-5  bg-[#ffffff1e]   
+                drop-shadow-sm drop-shadow-white rounded-md `}
               >
                 <div className="flex items-center gap-10 flex-wrap">
                   <input type="text" className="hidden" readOnly value={data.id} name="id" />
@@ -109,21 +142,22 @@ const Package = ({
                     </ul>
                   ) : (
                     ""
-                  )}
+                  )} 
                 </div>
               </div>
             ))}
-            <div className="flex w-full mt-10 justify-center items-center gap-1 flex-wrap">
+            <div className="flex w-full py-10 justify-center items-center gap-1 flex-wrap">
               <button
-                className="w-[100px] bg-[#ffffff2c] text-2xl text-white px-4 py-2 shadow-sm shadow-state-800 hover:shadow-none rounded-md"
+                className="w-[80px] shadow-md shadow-black  bg-[#ffffff2c] text-2xl  text-white px-4 py-2 hover:shadow-sm hover:shadow-black rounded-md"
                 onClick={() => handleStepChange(prevStep())}
               >
                 Prev
               </button>
               <button
-                className="w-[100px] bg-[#ffffff2c] text-2xl text-white px-4 py-2 shadow-sm shadow-slate-800 hover:shadow-none rounded-md"
+                className="disabled:bg-[#ffffff7e] w-[80px] shadow-md shadow-black  bg-[#ffffff2c] text-2xl  text-white px-4 py-2 hover:shadow-md hover:shadow-black rounded-md"
                 // onClick={() => handleStepChange(nextStep())}
                 type="submit"
+                disabled = {checkedValue==null}
               >
                 Next
               </button>

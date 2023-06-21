@@ -15,14 +15,11 @@ import { useFetcher, useNavigate } from "react-router-dom";
 import PasswordShowHide from "../../Login/PasswordShowHide";
 import { FiSend } from "react-icons/fi";
 const styles = {
-  label: "block text-gray-700 text-sm font-bold pt-2 pb-1",
-  field:
-    "bg-gray-100 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none focus:bg-gray-200",
-  button:
-    " bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600",
+  label: "text-white  font-montserat text-2xl md:text-3xl font-bold pt-2 pb-1 w-full block",
+  field: "bg-gray-100 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none focus:bg-gray-200",
+  button: " bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600",
   errorMsg: "text-red-500 text-sm",
-  textarea:
-    "bg-gray-100 w-[300px] sm:w-[600px] lg:w-[800px] focus:shadow-outline rounded block w-full appearance-none focus:bg-gray-200 p-5",
+  textarea: "bg-gray-100 w-[300px] sm:w-[600px] lg:w-[800px] focus:shadow-outline rounded block w-full appearance-none focus:bg-gray-200 p-5",
 };
 interface IQuote {
   result: IInitialState;
@@ -42,27 +39,24 @@ const Quote = ({
   result,
   prevStep,
   handleStepChange,
-  handleResultChange,
+  handleResultChange
 }: IQuote) => {
+  // function onlyAlphabet(inputVal:any) {
+  //   var patt=/^[a-zA-Z]+$/;
+  //   if(patt.test(inputVal)){
+  //     document.getElementById('fName')!.value  = inputVal;
+  //   }
+  //   else{
+  //     var txt = inputVal.slice(0, -1);
+  //     document.getElementById('fName')!.value = txt;
+  //   }
 
-  function onlyAlphabet(inputVal:any) {
-    var patt=/^[a-zA-Z]+$/;
-    if(patt.test(inputVal)){
-      document.getElementById('fName')!.value  = inputVal;
-    }
-    else{
-      var txt = inputVal.slice(0, -1);
-      document.getElementById('fName')!.value = txt;
-    }
-    
-  }
-
+  // }
 
   const navigate = useNavigate();
   const redirectLogin = () => {
     navigate("/login");
   };
-
 
   const formInitialValues = {
     fName: "",
@@ -146,38 +140,37 @@ const Quote = ({
             setFieldValue,
           }) => (
             <div className="w-full flex justify-center my-10">
-              <Form className=" form-training w-[300px] sm:w-[600px] lg:w-[800px]">
-                <div className="form-group row py-sm-1 px-sm-3">
-                  <label className={styles.label} htmlFor="fName">
-                    First Name
-                    {errors.fName ? (
-                      <span className={styles.errorMsg}>*</span>
-                    ) : (
-                      ""
-                    )}
-                  </label>
-                  <Field
-                   onInput = {(e:any)=>{
-                    console.log(e)
-                    return true;
-
-                   }}
-                   id="fName"
-                    onChange = {(e:any)=>{
-                      console.log(e.target.value)
-                    }}
-                    className={`${styles.field} ${
-                      touched.fName && errors.fName ? "is-invalid" : ""
-                    }`}
-                    type="text"
-                    name="fName"
-                    placeholder="First Name"
-                  />
-                  <ErrorMessage
-                    name="fName"
-                    component="span"
-                    className={styles.errorMsg}
-                  />
+              <Form className=" form-training w-[250px] sm:w-[500px] lg:w-[800px] ">
+                <div className=" py-sm-1 px-sm-3 w-full flex justify-center">
+                  <div className="w-full">
+                    <label className={styles.label} htmlFor="fName">
+                      First Name
+                      {errors.fName ? (
+                        <span className={styles.errorMsg}>*</span>
+                      ) : (
+                        ""
+                      )}
+                    </label>
+                    <Field
+                      onInput={(e: any) => {
+                        console.log(e);
+                        return true;
+                      }}
+                      id="fName"
+                      pattern="[a-zA-Z]*"
+                      className={`${styles.field} ${
+                        touched.fName && errors.fName ? "is-invalid" : ""
+                      }`}
+                      type="text"
+                      name="fName"
+                      placeholder="First Name"
+                    />
+                    <ErrorMessage
+                      name="fName"
+                      component="span"
+                      className={styles.errorMsg}
+                    />
+                  </div>
                 </div>
                 <div className="form-group row py-sm-1 px-sm-3">
                   <label className={styles.label} htmlFor="lName">

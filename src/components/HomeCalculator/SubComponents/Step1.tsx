@@ -70,8 +70,10 @@ const BHK = ({
 }: IBHK) => {
   //   const [checked, setChecked] = useState<Boolean>(false);
   const [checkedValue, setCheckedValue] = useState<string | null>(null);
-  const [selectedId , setSelectedId] = useState<number|null>(null);
-  const [bhkSizeId , setBhkSizeId] = useState<number|null>(null)
+  const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [checkedBHKType, setCheckedBHKType] = useState<number | null>(null);
+  const [bhkSizeId, setBhkSizeId] = useState<number | null>(null);
+
   const alert = () => toast("Unable to Proceed. Select Option");
 
   const handleFormSubmit = (e: any) => {
@@ -87,43 +89,52 @@ const BHK = ({
     // console.log("UPDATED DATA");
     // console.log(updatedData);
     const formattedData = {
-      bhkDetails : {
-        id: selectedId  as number,
-        bhkType : updatedData.bhkType,
-        bhkSize : updatedData.bhkSize
-      }
-    }
-    const {id ,bhkType , bhkSize} = formattedData.bhkDetails;
+      bhkDetails: {
+        id: checkedBHKType as number,
+        bhkType: updatedData.bhkType,
+        bhkSize: updatedData.bhkSize,
+      },
+    };
+    const { id, bhkType, bhkSize } = formattedData.bhkDetails;
 
-    if( (id==2 || id==3 ||id==4 ) && (formattedData.bhkDetails.bhkType == null || formattedData.bhkDetails.bhkSize==null))
-    {
+    if (
+      (id == 2 || id == 3 || id == 4) &&
+      (formattedData.bhkDetails.bhkType == null ||
+        formattedData.bhkDetails.bhkSize == null)
+    ) {
       alert();
-      return ; 
-
+      return;
     }
-    // console.log("FORMATTED DATA FOR STEP 1");
-    // console.log(formattedData)
+    console.log("FORMATTED DATA FOR STEP 1");
+    console.log(formattedData)
     // console.log("RESULT")
     // console.log(result)
+  
     handleResultChange({ ...result, ...formattedData });
 
-    setTimeout(() => {
-      handleStepChange(nextStep());
-    }, 1000);
+    // setTimeout(() => {
+    //   handleStepChange(nextStep());
+    // }, 1000);
 
     // e.target.reset();
   };
 
-  const handleInputChange = (e: any , id : number) => {
+  const handleInputChange = (e: any, id: number) => {
     // console.log("radio clicked with value : " + e.target.value);
-    setSelectedId(id)
+    setSelectedId(id);
     setCheckedValue(e.target.value);
   };
 
-  const handleBhkSize = (id : number)=>{
+  const handleBhkSize = (id: number) => {
     setBhkSizeId(id);
-
+  };
+  const handleSetBHKSizeChecked = (id : number)=>{
+    setBhkSizeId(id);
   }
+  const handleSetBHKChecked = (id: number , type : string) => {
+    setCheckedValue(type);
+    setCheckedBHKType(id);
+  };
   return (
     <div className="font-ubuntu w-full h-screen flex justify-center items-center flex-col">
       <div className="shadow-md shadow-black w-[400px] h-[80%] container bg-[#ffffff2c] rounded-md flex flex-col justify-center items-center">
@@ -151,15 +162,17 @@ const BHK = ({
               return (
                 <div
                   key={generateKey(data.type)}
-                  className=" flex items-center gap-2 justify-center w-[80%]   h-[50px] bg-[#ffffff2c] rounded-md shadow-md shadow-black my-2"
+                  onClick={() => handleSetBHKChecked(data.id , data.type)}
+                  className="cursor-pointer flex items-center gap-2 justify-center w-[80%]   h-[50px] bg-[#ffffff2c] rounded-md shadow-md shadow-black my-2"
                 >
-                
                   <input
                     className="mx-2"
                     type="radio"
                     value={data.type}
                     name="bhkType"
-                    onChange={(e) => handleInputChange(e ,data.id)}
+                    readOnly
+                    checked ={data.id == checkedBHKType}
+                    // onChange={(e) => handleInputChange(e, data.id)}
                   ></input>
                   <label
                     htmlFor="bhkType"
@@ -173,15 +186,20 @@ const BHK = ({
               return (
                 <div
                   key={generateKey(data.type)}
-                  className="flex flex-col items-center gap-2  w-[80%]  bg-[#ffffff2c] rounded-md shadow-md shadow-black my-2"
+                  className="cursor-pointer flex flex-col items-center gap-2  w-[80%]  bg-[#ffffff2c] rounded-md shadow-md shadow-black my-2"
                 >
-                  <div className="flex flex-row">
+                  <div
+                    className="flex flex-row"
+                    onClick={() => handleSetBHKChecked(data.id , data.type)}
+                  >
                     <input
                       className="mx-2"
                       name="bhkType"
                       value={data.type}
                       type="radio"
-                      onChange={(e) => handleInputChange(e , data.id)}
+                      readOnly
+                      checked ={data.id == checkedBHKType}
+                      // onChange={(e) => handleInputChange(e, data.id)}
                     />
                     <label
                       htmlFor="bhkType"
@@ -195,13 +213,14 @@ const BHK = ({
                     {checkedValue != null &&
                     ["2BHK", "3BHK", "4BHK"].includes(checkedValue) &&
                     checkedValue === data.type ? (
-                      <>
+                      <div className="flex flex-row gap-1 ">
                         {data.size.map((element: any) => {
                           return (
                             <label
+                            onClick={()=>handleSetBHKSizeChecked(element.id)}
                               htmlFor="bhkSize"
                               id="bhkSizeLabel"
-                              onClick={()=>handleBhkSize(element.id)}
+                              // onClick={() => handleBhkSize(element.id)}
                               className="bg-[#ffffff2c] px-2 py-1 rounded-md shadow-lg shadow-black"
                             >
                               <h5>{element.title}</h5>
@@ -210,13 +229,16 @@ const BHK = ({
                                 id="bhkSize"
                                 name="bhkSize"
                                 type="radio"
-                                checked = {selectedId== element.id}
+                                readOnly
+                                checked  = {element.id === bhkSizeId}
+                                // onChange={()=>handleSetBHKSizeChecked(element.id)}
+                                // checked = {selectedId== element.id}
                                 value={element.title}
                               />
                             </label>
                           );
                         })}
-                      </>
+                      </div>
                     ) : (
                       //  <select name="bhkSize" id="bhkSize" className="px-4 py-1 text-2xl rounded-md mr-4 outline-none">
                       //     {

@@ -241,7 +241,7 @@ const Rooms = ({
             );
           })}
 
-          <div className="flex flex-wrap justify-center items-center gap-1">
+          <div className="flex w-full mt-10 justify-center items-center gap-1 flex-wrap">
             <button
               className="w-[80px] shadow-md shadow-black  bg-[#ffffff2c] text-2xl  text-white px-4 py-2 hover:shadow-sm hover:shadow-black rounded-md"
               onClick={() => handleStepChange(prevStep())}
