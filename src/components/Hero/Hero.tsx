@@ -3,7 +3,7 @@ const Interior_1 = "interior-1.jpg";
 const Interior_2 = "interior-2.jpg";
 const Interior_3 = "interior-3.jpg";
 const Interior_4 = "interior-4.jpg";
-
+// import {react-lazyu}
 const bgImages = [Interior_1, Interior_2, Interior_3, Interior_4];
 
 const Hero = () => {
