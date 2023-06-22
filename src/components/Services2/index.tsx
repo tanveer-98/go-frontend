@@ -19,7 +19,7 @@ const Services2 = () => {
       <div className="bg-[rgba(17, 24, 39,1)] w-[80%] h-[80%]  rounded-lg flex flex-col md:flex-row md:flex shadow-sm shadow-gray-700">
         <div className="flex flex-col md:flex-row w-full h-full ">
           <div className="flex justify-center items-center">
-            <div className="px-24 md:px-8 justify-around md:h-full flex md:flex-col flex-row overflow-x-auto md:overflow-hidden bg-[#222121d5] rounded-lg ">
+            <div className="md:px-8 justify-start md:justify-around md:h-full flex md:flex-col flex-row overflow-x-scroll md:overflow-hidden bg-[#222121d5] rounded-lg ">
               {DATA.map((element) => (
                 <button
                   onClick={() => handleClick(element.id)}
@@ -77,9 +77,9 @@ const Services2 = () => {
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path
-                              fill-rule="evenodd"
+                              fillRule="evenodd"
                               d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clip-rule="evenodd"
+                              clipRule="evenodd"
                             ></path>
                           </svg>
                           <span className="font-thin text-slate-300 text-2xl font-montserat">

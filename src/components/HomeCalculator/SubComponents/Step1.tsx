@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { IInitialState } from "../../../types";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { IBHKDetails } from "../../../types";
+import { generateKey } from "../../../utility/uniqueKey";
 const BHKDATA = [
   {
     id: 1,
@@ -43,83 +45,134 @@ export interface IBHK {
   result: IInitialState;
   nextStep: () => number;
   handleStepChange: (updatedValue: number) => any;
-  handleResultChange : (updatedResult : IInitialState) => void; 
+  handleResultChange: (updatedResult: IInitialState) => void;
 }
 // update the Interface type
-const getData = (form: any) => {
-//   console.log(form);
+export const getData = (form: any) => {
+  //   console.log(form);
   const data = new FormData(form);
-//   console.log(data);
+  //   console.log(data);
 
   // method 1: loop
-//   for (let [key, value] of Object.entries(data)) {
-//     console.log(key + "     " + value);
-//   }
+  //   for (let [key, value] of Object.entries(data)) {
+  //     console.log(key + "     " + value);
+  //   }
   // method 2 : output as Object only
 
   return Object.fromEntries(data.entries());
 };
 
-const BHK = ({ result,nextStep, handleStepChange ,handleResultChange }: IBHK) => {
-
-//   const [checked, setChecked] = useState<Boolean>(false);
+const BHK = ({
+  result,
+  nextStep,
+  handleStepChange,
+  handleResultChange,
+}: IBHK) => {
+  //   const [checked, setChecked] = useState<Boolean>(false);
   const [checkedValue, setCheckedValue] = useState<string | null>(null);
+  const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [checkedBHKType, setCheckedBHKType] = useState<number | null>(null);
+  const [bhkSizeId, setBhkSizeId] = useState<number | null>(null);
 
-  const alert  = ()=> toast("Unable to Proceed. Select Option");
+  const alert = () => toast("Unable to Proceed. Select Option");
 
   const handleFormSubmit = (e: any) => {
     e.preventDefault();
-    if(checkedValue === null) {
-        alert();
-        return;
+    // console.log(e.target)
+    if (checkedValue === null) {
+      alert();
+      return;
     }
-    // console.log(e.target);
-    const updatedData = getData(e.target);
-    console.log(updatedData)
-    handleResultChange({...result, ...updatedData});
+    // console.log(e.target)
+    const updatedData = getData(e.target) as unknown as IBHKDetails;
 
+    // console.log("UPDATED DATA");
+    // console.log(updatedData);
+    const formattedData = {
+      bhkDetails: {
+        id: checkedBHKType as number,
+        bhkType: updatedData.bhkType,
+        bhkSize: updatedData.bhkSize,
+      },
+    };
+    const { id, bhkType, bhkSize } = formattedData.bhkDetails;
 
-    setTimeout(() => {  
-      handleStepChange(nextStep());
-    }, 1000);
+    if (
+      (id == 2 || id == 3 || id == 4) &&
+      (formattedData.bhkDetails.bhkType == null ||
+        formattedData.bhkDetails.bhkSize == null)
+    ) {
+      alert();
+      return;
+    }
+    console.log("FORMATTED DATA FOR STEP 1");
+    console.log(formattedData)
+    // console.log("RESULT")
+    // console.log(result)
+  
+    handleResultChange({ ...result, ...formattedData });
+
+    // setTimeout(() => {
+    //   handleStepChange(nextStep());
+    // }, 1000);
 
     // e.target.reset();
   };
 
-  const handleInputChange = (e: any) => {
-    console.log("radio clicked with value : " + e.target.value);
-
+  const handleInputChange = (e: any, id: number) => {
+    // console.log("radio clicked with value : " + e.target.value);
+    setSelectedId(id);
     setCheckedValue(e.target.value);
   };
 
+  const handleBhkSize = (id: number) => {
+    setBhkSizeId(id);
+  };
+  const handleSetBHKSizeChecked = (id : number)=>{
+    setBhkSizeId(id);
+  }
+  const handleSetBHKChecked = (id: number , type : string) => {
+    setCheckedValue(type);
+    setCheckedBHKType(id);
+  };
   return (
-    <div className="font-ubuntu w-full h-screen flex justify-center items-center flex-col bg-[#ffffd5]">
-      <div className="shadow-md shadow-black w-[400px] h-[80%] container bg-purple-500 rounded-md flex flex-col justify-center items-center">
+    <div className="font-ubuntu w-full h-screen flex justify-center items-center flex-col">
+      <div className="shadow-md shadow-black w-[400px] h-[80%] container bg-[#ffffff2c] rounded-md flex flex-col justify-center items-center">
         <h1 className="text-3xl md:text-5xl text-white font-bold drop-shadow-md mb-2">
           Select BHK Type
         </h1>
         <ToastContainer
-       position="top-center"
-       autoClose={5000}
-       hideProgressBar={false}
-       newestOnTop={false}
-       closeOnClick
-       rtl={false}
-       pauseOnFocusLoss
-       draggable
-       pauseOnHover
-       theme="light"/>
-        <form onSubmit={(e) => handleFormSubmit(e)} className="w-[80%] flex justify-center flex-col items-center">
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+        <form
+          onSubmit={(e) => handleFormSubmit(e)}
+          className="w-[80%] flex justify-center flex-col items-center"
+        >
           {BHKDATA.map((data: any, idx) => {
             if (data.size === null) {
               return (
-                <div key={idx} className=" flex items-center gap-2 justify-center w-[80%]   h-[50px] bg-purple-600 rounded-md shadow-md shadow-black my-2">
+                <div
+                  key={generateKey(data.type)}
+                  onClick={() => handleSetBHKChecked(data.id , data.type)}
+                  className="cursor-pointer flex items-center gap-2 justify-center w-[80%]   h-[50px] bg-[#ffffff2c] rounded-md shadow-md shadow-black my-2"
+                >
                   <input
                     className="mx-2"
                     type="radio"
                     value={data.type}
                     name="bhkType"
-                    onChange={(e) => handleInputChange(e)}
+                    readOnly
+                    checked ={data.id == checkedBHKType}
+                    // onChange={(e) => handleInputChange(e, data.id)}
                   ></input>
                   <label
                     htmlFor="bhkType"
@@ -131,14 +184,22 @@ const BHK = ({ result,nextStep, handleStepChange ,handleResultChange }: IBHK) =>
               );
             } else {
               return (
-                <div key={idx} className="flex flex-col items-center gap-2  w-[80%]  bg-purple-600 rounded-md shadow-md shadow-black my-2">
-                  <div className="flex flex-row">
+                <div
+                  key={generateKey(data.type)}
+                  className="cursor-pointer flex flex-col items-center gap-2  w-[80%]  bg-[#ffffff2c] rounded-md shadow-md shadow-black my-2"
+                >
+                  <div
+                    className="flex flex-row"
+                    onClick={() => handleSetBHKChecked(data.id , data.type)}
+                  >
                     <input
                       className="mx-2"
                       name="bhkType"
                       value={data.type}
                       type="radio"
-                      onChange={(e) => handleInputChange(e)}
+                      readOnly
+                      checked ={data.id == checkedBHKType}
+                      // onChange={(e) => handleInputChange(e, data.id)}
                     />
                     <label
                       htmlFor="bhkType"
@@ -152,13 +213,15 @@ const BHK = ({ result,nextStep, handleStepChange ,handleResultChange }: IBHK) =>
                     {checkedValue != null &&
                     ["2BHK", "3BHK", "4BHK"].includes(checkedValue) &&
                     checkedValue === data.type ? (
-                      <>
+                      <div className="flex flex-row gap-1 ">
                         {data.size.map((element: any) => {
                           return (
                             <label
+                            onClick={()=>handleSetBHKSizeChecked(element.id)}
                               htmlFor="bhkSize"
                               id="bhkSizeLabel"
-                              className="bg-purple-400 px-2 py-1 rounded-md shadow-lg shadow-black"
+                              // onClick={() => handleBhkSize(element.id)}
+                              className="bg-[#ffffff2c] px-2 py-1 rounded-md shadow-lg shadow-black"
                             >
                               <h5>{element.title}</h5>
                               <p>{element.desc}</p>
@@ -166,12 +229,16 @@ const BHK = ({ result,nextStep, handleStepChange ,handleResultChange }: IBHK) =>
                                 id="bhkSize"
                                 name="bhkSize"
                                 type="radio"
+                                readOnly
+                                checked  = {element.id === bhkSizeId}
+                                // onChange={()=>handleSetBHKSizeChecked(element.id)}
+                                // checked = {selectedId== element.id}
                                 value={element.title}
                               />
                             </label>
                           );
                         })}
-                      </>
+                      </div>
                     ) : (
                       //  <select name="bhkSize" id="bhkSize" className="px-4 py-1 text-2xl rounded-md mr-4 outline-none">
                       //     {
@@ -192,7 +259,7 @@ const BHK = ({ result,nextStep, handleStepChange ,handleResultChange }: IBHK) =>
             }
           })}
           <button
-            className="w-[80px] shadow-md shadow-black  bg-purple-600 text-2xl  text-white px-4 py-2 hover:shadow-none rounded-md"
+            className="w-[80px] shadow-md shadow-black  bg-[#ffffff2c] text-2xl  text-white px-4 py-2 hover:shadow-none rounded-md"
             //   onClick={() => handleChange(nextStep())}
             type="submit"
           >

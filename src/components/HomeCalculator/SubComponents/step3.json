@@ -1,0 +1,35 @@
+[
+    {
+        "id": 1, 
+        "title" : "Essentials",
+        "description" : "A range of home interior solutions that's perfect for all your needs",
+        "imageUrl" : "https://picsum.photos/200",
+        "advantages" : [
+            "Affordable pricing",
+            "Convenient designs",
+            "Basic accessories"
+        ]
+    },
+    {
+        "id": 2, 
+        "title" : "Premium",
+        "description" : "Superior Home interior solutinos that will take your interior to the next level",
+        "imageUrl": "https://picsum.photos/200",
+        "advantages" : [
+            "Mid-range pricing",
+            "Premium designs",
+            "Wide range of accessories"
+        ]
+    },
+    {
+        "id": 3, 
+        "title" : "Luxe",
+        "description" : "High-end interior solutions for the untilate home interior experience your deserve",
+        "imageUrl": "https://picsum.photos/200",
+        "advantages" : [
+            "Elite pricing",
+            "Lavish designs",
+            "Extensive range of accessories"
+        ]
+    }
+]
